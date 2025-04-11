@@ -36,8 +36,9 @@ def load_css():
     
     /* Base styling */
     body {
-        background-color: #0f172a;
+        background-color: #0e1525;
         color: #f8fafc;
+        background-image: radial-gradient(circle at 50% 50%, #131c31 0%, #0e1525 100%);
     }
     
     /* Chat interface */
@@ -46,19 +47,19 @@ def load_css():
         display: flex;
         flex-direction: column;
         padding: 0;
-        background-color: #0f172a;
+        background-color: transparent;
         position: relative;
-        padding-bottom: 70px; /* Space for input area */
+        padding-bottom: 90px; /* Space for input area */
     }
     
     /* Messages container */
     .messages-container {
         flex: 1;
         overflow-y: auto;
-        padding: 5px 20px 120px 20px;
+        padding: 0px 20px 100px 20px;
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: 15px;
         max-width: 1000px;
         margin: 0 auto;
         width: 100%;
@@ -66,30 +67,32 @@ def load_css():
     
     /* Message styles */
     .message {
-        padding: 14px 18px;
-        margin-bottom: 12px;
-        border-radius: 12px;
-        max-width: 85%;
+        padding: 15px 20px;
+        margin-bottom: 15px;
+        border-radius: 15px;
+        max-width: 80%;
         animation: fadeIn 0.3s ease-out;
         word-wrap: break-word;
         line-height: 1.5;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
         position: relative;
     }
     
     .user-message {
-        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        background: linear-gradient(135deg, #3b82f6, #1e40af);
         color: white;
         align-self: flex-end;
         border-radius: 18px 18px 0 18px;
+        margin-right: 15px;
     }
     
     .bot-message {
-        background-color: #334155;
+        background-color: #1e293b;
         color: #f1f5f9;
         align-self: flex-start;
         border-radius: 18px 18px 18px 0;
         border-left: 3px solid #3b82f6;
+        margin-left: 15px;
     }
     
     /* Message avatars */
@@ -97,40 +100,41 @@ def load_css():
         content: "";
         position: absolute;
         bottom: -10px;
-        right: -10px;
-        width: 30px;
-        height: 30px;
+        right: -15px;
+        width: 35px;
+        height: 35px;
         background-image: url('https://img.icons8.com/color/96/000000/user-male-circle--v1.png');
         background-size: cover;
         border-radius: 50%;
         border: 2px solid #1d4ed8;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     }
     
     .bot-message::before {
         content: "";
         position: absolute;
         bottom: -10px;
-        left: -10px;
-        width: 30px;
-        height: 30px;
+        left: -15px;
+        width: 35px;
+        height: 35px;
         background-image: url('https://img.icons8.com/fluency/96/000000/chatbot.png');
         background-size: cover;
         border-radius: 50%;
         border: 2px solid #3b82f6;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     }
     
-    /* Input area */
+    /* Input area - fixed to bottom */
     .input-area {
         position: fixed;
         bottom: 0;
         left: 0;
         right: 0;
-        padding: 15px 15px 15px 15px;
-        background: #0e1525;
+        padding: 15px 15px 10px 15px;
+        background: linear-gradient(to top, #0e1525, rgba(14, 21, 37, 0.95));
         z-index: 100;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: 1px solid rgba(59, 130, 246, 0.2);
+        backdrop-filter: blur(8px);
     }
     
     /* Form styling improvements */
@@ -145,7 +149,7 @@ def load_css():
         display: flex;
         align-items: center;
         background-color: #1e293b;
-        border-radius: 30px;
+        border-radius: 25px;
         padding: 8px 8px 8px 20px;
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         margin: 0 auto;
@@ -153,13 +157,13 @@ def load_css():
         max-width: 800px;
         height: 55px;
         transition: all 0.3s ease;
-        border: 1px solid rgba(59, 130, 246, 0.2);
+        border: 1px solid rgba(59, 130, 246, 0.3);
     }
     
     .input-container:focus-within {
-        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
-        border: 1px solid rgba(59, 130, 246, 0.5);
-        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        border: 1px solid rgba(59, 130, 246, 0.6);
+        transform: translateY(-3px);
     }
     
     /* Fix for Streamlit inputs */
@@ -238,7 +242,7 @@ def load_css():
         color: white;
     }
     
-    /* Welcome container */
+    /* Welcome container - made simpler without title */
     .welcome-container {
         text-align: center;
         padding: 40px 20px;
@@ -247,7 +251,8 @@ def load_css():
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: calc(100vh - 200px);
+        height: calc(100vh - 180px);
+        margin-top: -20px;
     }
     
     /* Sidebar styling */
@@ -394,12 +399,14 @@ def load_css():
         background-color: #3b82f6;
     }
     
-    /* Footer info in chat input */
+    /* Footer info in chat input - fully integrated */
     .footer-info {
         text-align: center;
         color: #64748b;
         font-size: 11px;
-        margin-top: 8px;
+        margin-top: 10px;
+        padding-bottom: 5px;
+        opacity: 0.7;
     }
     
     /* Mobile responsiveness */
@@ -407,10 +414,26 @@ def load_css():
         .message {
             max-width: 90%;
             font-size: 14px;
+            padding: 12px 15px;
+        }
+        
+        .user-message::before,
+        .bot-message::before {
+            width: 30px;
+            height: 30px;
+        }
+        
+        .user-message {
+            margin-right: 10px;
+        }
+        
+        .bot-message {
+            margin-left: 10px;
         }
         
         .input-container {
             padding: 5px 5px 5px 15px;
+            height: 50px;
         }
         
         .input-container .stTextInput > div > div > input {
@@ -424,18 +447,11 @@ def load_css():
         
         .welcome-container {
             padding: 20px 10px;
+            height: calc(100vh - 150px);
         }
         
         .welcome-container img {
             width: 60px;
-        }
-        
-        .welcome-container h3 {
-            font-size: 20px !important;
-        }
-        
-        .welcome-container p {
-            font-size: 14px !important;
         }
         
         .sidebar-content {
@@ -449,6 +465,10 @@ def load_css():
         
         .history-container {
             max-height: 200px;
+        }
+        
+        .messages-container {
+            padding: 0px 10px 100px 10px;
         }
     }
     </style>
@@ -531,22 +551,24 @@ def find_response(user_input):
 # Function to get response from Groq API
 def get_ai_response(query):
     try:
-        with st.spinner(""):  # Empty spinner for smoother UX
+        # Empty spinner for better UX
+        with st.spinner(""):
             chat_completion = client.chat.completions.create(
                 messages=[
-                    {"role": "system", "content": "You are a helpful, friendly assistant created by Nandesh Kalashetti. Keep your answers concise, informative and engaging. Include appropriate emojis in your responses to make the conversation more lively. Format important information with bold or italics when appropriate. Be conversational but efficient."},
+                    {"role": "system", "content": "You are a helpful, friendly assistant created by Nandesh Kalashetti. Keep your answers very concise, informative and engaging. Use emojis when appropriate but don't overdo it. Format important information with bold when needed. Be conversational yet efficient. Keep responses under 100 words when possible."},
                     {"role": "user", "content": query}
                 ],
-                model="llama3-8b-8192",  # Using the efficient LLaMA 3 model
-                max_tokens=800,
-                temperature=0.7,  # Slightly more creative responses
-                top_p=0.9,  # Better quality with slightly reduced speed
-                stream=False  # Not streaming for faster complete responses
+                model="llama3-8b-8192",  # Efficient model
+                max_tokens=500,  # Reduced for faster responses
+                temperature=0.7,  # Good creativity balance
+                top_p=0.95,  # Better quality without sacrificing speed
+                stream=False,  # Not streaming for faster complete responses
+                timeout=10  # Set timeout to ensure fast responses
             )
             return chat_completion.choices[0].message.content
     except Exception as e:
         st.error(f"Error connecting to Groq API: {str(e)}")
-        return "😕 I'm having trouble connecting to my AI capabilities right now. Please try again later."
+        return "😕 I'm having trouble connecting right now. Please try again in a moment."
 
 # Function to add to chat history
 def add_to_chat_history(query):
@@ -671,16 +693,16 @@ def main():
     # Main content - simplified structure
     st.markdown('<div class="chat-interface">', unsafe_allow_html=True)
     
-    # Messages container
+    # Messages container - no header or title anymore
     st.markdown('<div class="messages-container">', unsafe_allow_html=True)
     
-    # Display welcome message if no messages yet
+    # Display welcome message if no messages yet - simplified
     if not st.session_state.messages:
         st.markdown("""
         <div class="welcome-container">
-            <img src="https://img.icons8.com/fluency/96/000000/chatbot.png" style="width: 90px; margin-bottom: 20px;" alt="Chatbot Icon">
-            <h3 style="color: #f8fafc; font-size: 28px; margin-bottom: 15px; background: linear-gradient(90deg, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">AI Assistant</h3>
-            <p style="color: #94a3b8; font-size: 16px;">Start the conversation by typing a message below. I'm here to help! 😊</p>
+            <img src="https://img.icons8.com/fluency/96/000000/chatbot.png" style="width: 80px; margin-bottom: 15px;" alt="Chatbot Icon">
+            <p style="color: #94a3b8; font-size: 16px; margin-bottom: 5px;">Start chatting with your AI Assistant</p>
+            <p style="color: #64748b; font-size: 14px;">Type a message below to begin</p>
         </div>
         """, unsafe_allow_html=True)
     
@@ -691,35 +713,45 @@ def main():
         else:
             # Add emojis to make responses more engaging
             content = message["content"]
-            # Add relevant emojis based on content
-            if "hello" in content.lower() or "hi" in content.lower():
-                content = "👋 " + content
-            elif "thank" in content.lower():
-                content = "😊 " + content
-            elif "sorry" in content.lower():
-                content = "😔 " + content
-            elif "help" in content.lower() or "assist" in content.lower():
-                content = "🤝 " + content
-            elif "created" in content.lower() or "developer" in content.lower():
-                content = "👨‍💻 " + content
-            elif "capabilities" in content.lower() or "can you" in content.lower():
-                content = "🚀 " + content
-            elif any(word in content.lower() for word in ["data", "weather", "temperature"]):
-                content = "📊 " + content
-            elif "error" in content.lower() or "trouble" in content.lower():
-                content = "⚠️ " + content
-            elif "?" in content:
-                content = "🤔 " + content
-            else:
-                content = "💡 " + content
+            # Only add emoji if not already present
+            if not any(char in content[:2] for char in ['😊', '👋', '🤖', '💡', '🚀', '📊', '⚠️', '🤔', '👍', '✨', '🙏', '😄']):
+                # Add relevant emojis based on content
+                if "hello" in content.lower() or "hi" in content.lower():
+                    content = "👋 " + content
+                elif "thank" in content.lower():
+                    content = "😊 " + content
+                elif "sorry" in content.lower():
+                    content = "😔 " + content
+                elif "help" in content.lower() or "assist" in content.lower():
+                    content = "🤝 " + content
+                elif "created" in content.lower() or "developer" in content.lower():
+                    content = "👨‍💻 " + content
+                elif "capabilities" in content.lower() or "can you" in content.lower():
+                    content = "🚀 " + content
+                elif any(word in content.lower() for word in ["data", "weather", "temperature"]):
+                    content = "📊 " + content
+                elif "error" in content.lower() or "trouble" in content.lower():
+                    content = "⚠️ " + content
+                elif "?" in content:
+                    content = "🤔 " + content
+                elif any(word in content.lower() for word in ["yes", "sure", "correct", "right"]):
+                    content = "👍 " + content
+                elif any(word in content.lower() for word in ["welcome", "please", "glad"]):
+                    content = "🙏 " + content
+                elif any(word in content.lower() for word in ["joke", "funny", "laugh"]):
+                    content = "😄 " + content
+                elif any(word in content.lower() for word in ["awesome", "amazing", "excellent", "great"]):
+                    content = "✨ " + content
+                else:
+                    content = "💡 " + content
                 
             st.markdown(f'<div class="message bot-message">{content}</div>', unsafe_allow_html=True)
     
     st.markdown('</div>', unsafe_allow_html=True)
     
-    # Input area with integrated footer
+    # Input area with fully integrated footer at the bottom
     st.markdown('<div class="input-area">', unsafe_allow_html=True)
-    
+
     # Using a form to handle Enter key press
     with st.form(key="message_form", clear_on_submit=True):
         col1, col2 = st.columns([7, 1])
@@ -741,10 +773,10 @@ def main():
             # Create a visible submit button with a send icon
             submitted = st.form_submit_button("↑", type="primary", help="Send message")
         
-        # Footer info integrated with chat input
+        # Footer info fully integrated with chat input - no separate footer
         st.markdown("""
         <div class="footer-info">
-            © 2025 Nandesh Kalashetti | Advanced AI Chatbot with Intelligent Responses
+            © 2025 Nandesh Kalashetti | AI Assistant
         </div>
         """, unsafe_allow_html=True)
     
