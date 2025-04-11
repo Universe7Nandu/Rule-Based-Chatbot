@@ -7,6 +7,14 @@ import random
 from dotenv import load_dotenv
 from groq import Groq
 
+# Set page config (must be first Streamlit command)
+st.set_page_config(
+    page_title="RuleBot - Rule-Based Chatbot",
+    page_icon="🤖",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
 # Load environment variables
 load_dotenv()
 
@@ -243,13 +251,8 @@ def main():
     load_css()
     init_session_state()
     
-    # Set page config
-    st.set_page_config(
-        page_title="RuleBot - Rule-Based Chatbot",
-        page_icon="🤖",
-        layout="wide",
-        initial_sidebar_state="expanded"
-    )
+    # Remove the set_page_config from here since it's now at the top
+    st.title("🤖 RuleBot - Your AI Assistant")
     
     # Apply theme
     theme_class = "dark-theme" if st.session_state.dark_mode else "light-theme"
