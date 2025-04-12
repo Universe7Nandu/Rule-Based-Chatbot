@@ -777,7 +777,16 @@ def main():
     # Main content - rule-based AI assistant
     st.markdown('<div class="chat-interface">', unsafe_allow_html=True)
 
-    # Simple welcome banner highlighting rule-based functionality
+    # Display welcome message if no messages yet - focused on rule-based functionality
+    if not st.session_state.messages:
+        st.markdown("""
+        <div class="welcome-container">
+            <img src="https://img.icons8.com/fluency/96/000000/chatbot.png" style="width: 80px; margin-bottom: 15px;" alt="Chatbot Icon">
+            <p style="color: #f8fafc; font-size: 16px; margin-bottom: 8px;">Rule-Based AI Assistant Ready!</p>
+            <p style="color: #94a3b8; font-size: 14px;">Ask me predefined questions or try more complex queries</p>
+        </div>
+        """, unsafe_allow_html=True)
+ # Simple welcome banner highlighting rule-based functionality
     st.markdown("""
     <div class="welcome-banner">
         <h1>Rule-Based AI Assistant</h1>
@@ -802,16 +811,6 @@ def main():
 
     # Messages container
     st.markdown('<div class="messages-container">', unsafe_allow_html=True)
-
-    # Display welcome message if no messages yet - focused on rule-based functionality
-    if not st.session_state.messages:
-        st.markdown("""
-        <div class="welcome-container">
-            <img src="https://img.icons8.com/fluency/96/000000/chatbot.png" style="width: 80px; margin-bottom: 15px;" alt="Chatbot Icon">
-            <p style="color: #f8fafc; font-size: 16px; margin-bottom: 8px;">Rule-Based AI Assistant Ready!</p>
-            <p style="color: #94a3b8; font-size: 14px;">Ask me predefined questions or try more complex queries</p>
-        </div>
-        """, unsafe_allow_html=True)
     
     # Display chat messages with pattern indicators for rule-based responses
     for message in st.session_state.messages:
