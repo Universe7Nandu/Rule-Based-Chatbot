@@ -809,7 +809,7 @@ def main():
     # Display chat messages with pattern indicators for rule-based responses
     for message in st.session_state.messages:
         if message["role"] == "user":
-            st.markdown(f'<div class="message user-message">{message["content"]}</div>', unsafe_allow_html=True)
+            st.markdown(f'<div class="user-message">{message["content"]}</div>', unsafe_allow_html=True)
         else:
             # Get content
             content = message.get("content", "")
