@@ -38,7 +38,7 @@ def load_css():
     body {
         background-color: #0e1525;
         color: #f8fafc;
-        background-image: radial-gradient(circle at 50% 50%, #151f38 0%, #0e1525 100%);
+        background-image: radial-gradient(circle at 50% 50%, #131c31 0%, #0e1525 100%);
     }
     
     /* Chat interface */
@@ -49,21 +49,20 @@ def load_css():
         padding: 0;
         background-color: transparent;
         position: relative;
-        padding-bottom: 80px; /* Space for input area */
+        padding-bottom: 90px; /* Space for input area */
     }
     
     /* Messages container */
     .messages-container {
         flex: 1;
         overflow-y: auto;
-        padding: 10px 20px 100px 20px;
+        padding: 0px 20px 100px 20px;
         display: flex;
         flex-direction: column;
         gap: 15px;
-        max-width: 900px;
+        max-width: 1000px;
         margin: 0 auto;
         width: 100%;
-        scroll-behavior: smooth;
     }
     
     /* Message styles */
@@ -118,24 +117,24 @@ def load_css():
         left: -15px;
         width: 35px;
         height: 35px;
-        background-image: url('https://img.icons8.com/color/96/000000/bot.png');
+        background-image: url('https://img.icons8.com/fluency/96/000000/chatbot.png');
         background-size: cover;
         border-radius: 50%;
         border: 2px solid #3b82f6;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     }
     
-    /* Input area - fixed to bottom with improved design */
+    /* Input area - fixed to bottom */
     .input-area {
         position: fixed;
         bottom: 0;
         left: 0;
         right: 0;
-        padding: 15px 20px 20px 20px;
-        background: #0f1624;
+        padding: 15px 15px 10px 15px;
+        background: linear-gradient(to top, #0e1525, rgba(14, 21, 37, 0.95));
         z-index: 100;
-        border-top: 1px solid rgba(59, 130, 246, 0.1);
-        box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.4);
+        border-top: 1px solid rgba(59, 130, 246, 0.2);
+        backdrop-filter: blur(8px);
     }
     
     /* Form styling improvements */
@@ -144,28 +143,27 @@ def load_css():
         border: none !important;
         padding: 0 !important;
         margin: 0 !important;
-        max-width: 900px !important;
-        margin: 0 auto !important;
     }
     
-    /* Input container styling */
     .input-container {
         display: flex;
         align-items: center;
-        background-color: #1b2435;
-        border-radius: 8px;
-        padding: 6px 5px 6px 15px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        background-color: #1e293b;
+        border-radius: 25px;
+        padding: 8px 8px 8px 20px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         margin: 0 auto;
         width: 100%;
-        height: 42px;
-        transition: all 0.2s ease;
-        border: 1px solid rgba(59, 130, 246, 0.1);
+        max-width: 800px;
+        height: 55px;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(59, 130, 246, 0.3);
     }
     
     .input-container:focus-within {
-        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
-        border: 1px solid rgba(59, 130, 246, 0.3);
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        border: 1px solid rgba(59, 130, 246, 0.6);
+        transform: translateY(-3px);
     }
     
     /* Fix for Streamlit inputs */
@@ -210,40 +208,38 @@ def load_css():
         margin-bottom: 0 !important;
     }
     
-    /* Send button improvements for perfect match */
+    /* Send button improvements */
     button[kind="primary"] {
-        background: #f43f5e !important;
+        background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
         color: white !important;
         border: none !important;
-        border-radius: 8px !important;
-        width: 38px !important;
-        height: 38px !important;
-        padding: 0px !important;
+        border-radius: 50% !important;
+        width: 40px !important;
+        height: 40px !important;
+        padding: 10px !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
         cursor: pointer !important;
-        transition: all 0.15s ease !important;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+        transition: all 0.3s ease !important;
+        box-shadow: 0 4px 12px rgba(29, 78, 216, 0.4) !important;
         min-width: unset !important;
-        margin: 0 !important;
-        font-size: 0 !important;
     }
     
     button[kind="primary"]:hover {
-        background: #e11d48 !important;
-        transform: translateY(-1px) !important;
+        transform: scale(1.1) !important;
+        box-shadow: 0 6px 18px rgba(29, 78, 216, 0.5) !important;
+    }
+    
+    .stButton button p {
+        display: none;
     }
     
     .stButton button::before {
         content: "↑";
-        font-size: 22px;
+        font-size: 18px;
         font-weight: bold;
         color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: -2px;
     }
     
     /* Welcome container - made simpler without title */
@@ -403,13 +399,14 @@ def load_css():
         background-color: #3b82f6;
     }
     
-    /* Footer info in chat input - minimal and centered */
+    /* Footer info in chat input - fully integrated */
     .footer-info {
         text-align: center;
         color: #64748b;
-        font-size: 10px;
-        margin-top: 6px;
-        opacity: 0.6;
+        font-size: 11px;
+        margin-top: 10px;
+        padding-bottom: 5px;
+        opacity: 0.7;
     }
     
     /* Mobile responsiveness */
@@ -474,38 +471,6 @@ def load_css():
             padding: 0px 10px 100px 10px;
         }
     }
-
-    /* Welcome banner styling */
-    .welcome-banner {
-        background: linear-gradient(135deg, #1e40af, #3b82f6);
-        color: white;
-        border-radius: 12px;
-        padding: 20px 25px;
-        margin-bottom: 20px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        animation: fadeIn 0.5s ease-out;
-        text-align: left;
-    }
-
-    .welcome-banner h1 {
-        font-size: 24px;
-        font-weight: 600;
-        margin-bottom: 8px;
-    }
-
-    .welcome-banner p {
-        font-size: 15px;
-        opacity: 0.9;
-        line-height: 1.4;
-    }
-
-    /* Divider line */
-    .divider {
-        height: 1px;
-        background: linear-gradient(to right, rgba(255,255,255,0.05), rgba(255,255,255,0.15), rgba(255,255,255,0.05));
-        margin: 15px 0;
-        width: 100%;
-    }
     </style>
     """, unsafe_allow_html=True)
 
@@ -516,7 +481,7 @@ def init_session_state():
     if 'chat_history' not in st.session_state:
         st.session_state.chat_history = []
     if 'rules' not in st.session_state:
-        # Define general rule patterns
+        # Define rule patterns with improved responses and emojis
         st.session_state.rules = [
             {
                 'patterns': [r'hello|hi|hey|greetings', r'^hi$'],
@@ -524,7 +489,7 @@ def init_session_state():
             },
             {
                 'patterns': [r'who are you|what are you|tell me about yourself'],
-                'responses': ["🤖 I'm an AI assistant created by Nandesh Kalashetti. I'm designed to provide helpful responses to your questions!"]
+                'responses': ["🤖 I'm an advanced AI assistant created by Nandesh Kalashetti. I combine rule-based capabilities with AI to provide helpful responses to your questions!"]
             },
             {
                 'patterns': [r'bye|goodbye|see you|farewell'],
@@ -539,8 +504,12 @@ def init_session_state():
                 'responses': ["🚀 I can answer questions, provide information, assist with various tasks, and engage in natural conversations. Just ask me anything!"]
             },
             {
+                'patterns': [r'weather|temperature'],
+                'responses': ["🌦️ I'm sorry, I don't have access to real-time weather data, but I'd be happy to help with other questions!"]
+            },
+            {
                 'patterns': [r'your name'],
-                'responses': ["🤖 I'm your AI assistant, created by Nandesh Kalashetti."]
+                'responses': ["🤖 I'm your AI assistant, created by Nandesh Kalashetti. You can call me Assistant!"]
             },
             {
                 'patterns': [r'how are you'],
@@ -586,7 +555,7 @@ def get_ai_response(query):
         with st.spinner(""):
             chat_completion = client.chat.completions.create(
                 messages=[
-                    {"role": "system", "content": "You are a helpful, friendly assistant created by Nandesh Kalashetti. Provide concise, informative responses to user queries. Use emojis occasionally to make your responses engaging but maintain a professional tone. Format important information with bold when helpful. Be conversational yet efficient. Keep responses under 100 words when possible."},
+                    {"role": "system", "content": "You are a helpful, friendly assistant created by Nandesh Kalashetti. Keep your answers very concise, informative and engaging. Use emojis when appropriate but don't overdo it. Format important information with bold when needed. Be conversational yet efficient. Keep responses under 100 words when possible."},
                     {"role": "user", "content": query}
                 ],
                 model="llama3-8b-8192",  # Efficient model
@@ -689,7 +658,7 @@ def main():
         st.markdown("""
         <div class="feature-card">
             <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">🧠 Rule-Based Intelligence</h4>
-            <p style="color: #94a3b8; font-size: 12px;">Quick responses to common questions</p>
+            <p style="color: #94a3b8; font-size: 12px;">Pattern matching for quick responses</p>
         </div>
         
         <div class="feature-card">
@@ -721,30 +690,19 @@ def main():
         """, unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
     
-    # Main content - clean and formal UI design
+    # Main content - simplified structure
     st.markdown('<div class="chat-interface">', unsafe_allow_html=True)
-
-    # Simple welcome banner
-    st.markdown("""
-    <div class="welcome-banner">
-        <h1>AI Assistant</h1>
-        <p>Welcome to your personal AI assistant. Ask any question to get started.</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-    # Divider line
-    st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
-
-    # Messages container 
+    
+    # Messages container - no header or title anymore
     st.markdown('<div class="messages-container">', unsafe_allow_html=True)
-
-    # Display welcome message if no messages yet - clean and simple
+    
+    # Display welcome message if no messages yet - simplified
     if not st.session_state.messages:
         st.markdown("""
         <div class="welcome-container">
-            <img src="https://img.icons8.com/fluency/96/000000/chatbot.png" style="width: 80px; margin-bottom: 15px;" alt="AI Assistant Icon">
-            <p style="color: #f8fafc; font-size: 16px; margin-bottom: 8px;">How can I assist you today?</p>
-            <p style="color: #94a3b8; font-size: 14px;">Type your question in the box below</p>
+            <img src="https://img.icons8.com/fluency/96/000000/chatbot.png" style="width: 80px; margin-bottom: 15px;" alt="Chatbot Icon">
+            <p style="color: #94a3b8; font-size: 16px; margin-bottom: 5px;">Start chatting with your AI Assistant</p>
+            <p style="color: #64748b; font-size: 14px;">Type a message below to begin</p>
         </div>
         """, unsafe_allow_html=True)
     
@@ -791,16 +749,16 @@ def main():
     
     st.markdown('</div>', unsafe_allow_html=True)
     
-    # Input area with integrated footer - simple and formal
+    # Input area with fully integrated footer at the bottom
     st.markdown('<div class="input-area">', unsafe_allow_html=True)
 
     # Using a form to handle Enter key press
     with st.form(key="message_form", clear_on_submit=True):
-        cols = st.columns([30, 1])
+        col1, col2 = st.columns([7, 1])
         
-        with cols[0]:
+        with col1:
             st.markdown('<div class="input-container">', unsafe_allow_html=True)
-            # Text input with simple placeholder
+            # Text input
             user_input = st.text_input(
                 "Message",
                 key="user_input",
@@ -809,11 +767,13 @@ def main():
             )
             st.markdown('</div>', unsafe_allow_html=True)
         
-        with cols[1]:
-            # Send button
-            submitted = st.form_submit_button("", type="primary", help="Send message")
+        with col2:
+            # Add some vertical spacing to align the button
+            st.markdown('<div style="height: 5px;"></div>', unsafe_allow_html=True)
+            # Create a visible submit button with a send icon
+            submitted = st.form_submit_button("↑", type="primary", help="Send message")
         
-        # Simple footer
+        # Footer info fully integrated with chat input - no separate footer
         st.markdown("""
         <div class="footer-info">
             © 2025 Nandesh Kalashetti | AI Assistant
