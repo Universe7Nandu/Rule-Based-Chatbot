@@ -159,7 +159,6 @@ def load_css():
         display: flex;
         align-items: center;
         background-color: #1e293b;
-        position:absolute;
         border-radius: 12px;
         padding: 8px 8px 8px 15px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
@@ -190,10 +189,11 @@ def load_css():
         background-color: transparent !important;
         color: #f8fafc !important;
         border: none !important;
+        padding: 12px 0 !important;
         font-size: 16px !important;
         width: 100% !important;
+        margin: 0 !important;
         height: 40px !important;
-        margin-bottom:0px;
     }
     
     /* Hide form label */
@@ -773,17 +773,11 @@ def main():
         </div>
         """, unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
+    
+    # Main content - rule-based AI assistant
+    st.markdown('<div class="chat-interface">', unsafe_allow_html=True)
 
-    # Display welcome message if no messages yet - focused on rule-based functionality
-    if not st.session_state.messages:
-        st.markdown("""
-        <div class="welcome-container">
-            <img src="https://img.icons8.com/fluency/96/000000/chatbot.png" style="width: 80px; margin-bottom: 15px;" alt="Chatbot Icon">
-            <p style="color: #f8fafc; font-size: 16px; margin-bottom: 8px;">Rule-Based AI Assistant Ready!</p>
-            <p style="color: #94a3b8; font-size: 14px;">Ask me predefined questions or try more complex queries</p>
-        </div>
-        """, unsafe_allow_html=True)
- # Simple welcome banner highlighting rule-based functionality
+    # Simple welcome banner highlighting rule-based functionality
     st.markdown("""
     <div class="welcome-banner">
         <h1>Rule-Based AI Assistant</h1>
@@ -806,10 +800,23 @@ def main():
     </div>
     """, unsafe_allow_html=True)
 
+    # Messages container
+    st.markdown('<div class="messages-container">', unsafe_allow_html=True)
+
+    # Display welcome message if no messages yet - focused on rule-based functionality
+    if not st.session_state.messages:
+        st.markdown("""
+        <div class="welcome-container">
+            <img src="https://img.icons8.com/fluency/96/000000/chatbot.png" style="width: 80px; margin-bottom: 15px;" alt="Chatbot Icon">
+            <p style="color: #f8fafc; font-size: 16px; margin-bottom: 8px;">Rule-Based AI Assistant Ready!</p>
+            <p style="color: #94a3b8; font-size: 14px;">Ask me predefined questions or try more complex queries</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
     # Display chat messages with pattern indicators for rule-based responses
     for message in st.session_state.messages:
         if message["role"] == "user":
-            st.markdown(f'<div class="user-message">{message["content"]}</div>', unsafe_allow_html=True)
+            st.markdown(f'<div class="message user-message">{message["content"]}</div>', unsafe_allow_html=True)
         else:
             # Get content
             content = message.get("content", "")
