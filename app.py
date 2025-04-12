@@ -156,7 +156,6 @@ def load_css():
         margin: 0 auto;
         width: 100%;
         max-width: 800px;
-        height: 55px;
         transition: all 0.3s ease;
         border: 1px solid rgba(79, 70, 229, 0.3);
         position: relative;
