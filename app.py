@@ -9,7 +9,7 @@ from groq import Groq
 
 # Set page config (must be first Streamlit command)
 st.set_page_config(
-    page_title="AI Assistant | Nandesh Kalashetti",
+    page_title="Rule-Based AI Assistant | Nandesh Kalashetti",
     page_icon="🤖",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -93,6 +93,7 @@ def load_css():
         border-radius: 18px 18px 18px 0;
         border-left: 3px solid #3b82f6;
         margin-left: 15px;
+        position: relative;
     }
     
     /* Message avatars */
@@ -471,6 +472,44 @@ def load_css():
             padding: 0px 10px 100px 10px;
         }
     }
+
+    /* Welcome banner styling */
+    .welcome-banner {
+        background: linear-gradient(135deg, #334155, #1e293b);
+        color: white;
+        border-radius: 12px;
+        padding: 20px 25px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        animation: fadeIn 0.5s ease-out;
+        text-align: left;
+        border-left: 4px solid #3b82f6;
+    }
+
+    .welcome-banner h1 {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .welcome-banner p {
+        font-size: 15px;
+        opacity: 0.9;
+        line-height: 1.4;
+    }
+
+    /* Rule pattern indicators */
+    .pattern-indicator {
+        display: inline-block;
+        background-color: rgba(59, 130, 246, 0.15);
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        color: #93c5fd;
+        border-radius: 4px;
+        padding: 1px 5px;
+        font-size: 11px;
+        margin-right: 5px;
+        font-family: monospace;
+    }
     </style>
     """, unsafe_allow_html=True)
 
@@ -535,18 +574,21 @@ def init_session_state():
             }
         ]
 
-# Function to match user input with rule patterns - improved for faster response
+# Function to match user input with rule patterns
 def find_response(user_input):
     user_input = user_input.lower().strip()
     
-    # Try to match with simple rules first for faster responses
+    # Try to match with simple rules first 
     for rule in st.session_state.rules:
         for pattern in rule['patterns']:
             if re.search(pattern, user_input):
-                return random.choice(rule['responses'])
+                response = random.choice(rule['responses'])
+                # Add indicator that this was a rule-based match
+                return {"content": response, "matched": True, "pattern": pattern}
     
     # If no simple rule matches, use Groq API for more complex responses
-    return get_ai_response(user_input)
+    ai_response = get_ai_response(user_input)
+    return {"content": ai_response, "matched": False, "pattern": None}
 
 # Function to get response from Groq API
 def get_ai_response(query):
@@ -555,7 +597,7 @@ def get_ai_response(query):
         with st.spinner(""):
             chat_completion = client.chat.completions.create(
                 messages=[
-                    {"role": "system", "content": "You are a helpful, friendly assistant created by Nandesh Kalashetti. Keep your answers very concise, informative and engaging. Use emojis when appropriate but don't overdo it. Format important information with bold when needed. Be conversational yet efficient. Keep responses under 100 words when possible."},
+                    {"role": "system", "content": "You are a rule-based AI assistant created by Nandesh Kalashetti. Your primary function is pattern matching, but you can handle complex queries too. Keep answers concise and informative (under 100 words). Use emojis occasionally to make responses engaging. Format important information in bold. Remember that users are testing a pattern-matching chatbot, so you might reference the pattern-matching capability in your responses when appropriate."},
                     {"role": "user", "content": query}
                 ],
                 model="llama3-8b-8192",  # Efficient model
@@ -592,11 +634,16 @@ def handle_submit():
         # Clear input
         st.session_state.user_input = ""
         
-        # Get bot response
-        response = find_response(user_message)
+        # Get bot response - now includes pattern info
+        response_data = find_response(user_message)
         
-        # Add bot response to chat
-        st.session_state.messages.append({"role": "assistant", "content": response})
+        # Add bot response to chat with pattern info
+        st.session_state.messages.append({
+            "role": "assistant", 
+            "content": response_data["content"],
+            "matched": response_data["matched"],
+            "pattern": response_data["pattern"]
+        })
         
         # Rerun to update UI
         st.rerun()
@@ -657,23 +704,23 @@ def main():
         st.markdown("<h3 style='color: #f8fafc; font-size: 15px; margin: 20px 0 5px;'>Features</h3>", unsafe_allow_html=True)
         st.markdown("""
         <div class="feature-card">
-            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">🧠 Rule-Based Intelligence</h4>
-            <p style="color: #94a3b8; font-size: 12px;">Pattern matching for quick responses</p>
+            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">🧠 Pattern Matching</h4>
+            <p style="color: #94a3b8; font-size: 12px;">Rule-based responses to predefined questions</p>
         </div>
         
         <div class="feature-card">
-            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">🤖 AI Integration</h4>
-            <p style="color: #94a3b8; font-size: 12px;">Powered by Groq LLM API</p>
+            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">⚙️ Regular Expressions</h4>
+            <p style="color: #94a3b8; font-size: 12px;">Advanced pattern recognition</p>
         </div>
         
         <div class="feature-card">
-            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">💬 Natural Conversations</h4>
-            <p style="color: #94a3b8; font-size: 12px;">Context-aware dialogue</p>
+            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">🤖 AI Fallback</h4>
+            <p style="color: #94a3b8; font-size: 12px;">For complex questions outside patterns</p>
         </div>
         
         <div class="feature-card">
-            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">📱 Responsive Design</h4>
-            <p style="color: #94a3b8; font-size: 12px;">Works on all devices</p>
+            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">📊 Unit Testing</h4>
+            <p style="color: #94a3b8; font-size: 12px;">Ensuring response reliability</p>
         </div>
         """, unsafe_allow_html=True)
         
@@ -684,35 +731,59 @@ def main():
             <span class="tech-badge">Python</span>
             <span class="tech-badge">Streamlit</span>
             <span class="tech-badge">Groq API</span>
-            <span class="tech-badge">LLaMA 3</span>
-            <span class="tech-badge">CSS3</span>
+            <span class="tech-badge">PyTest</span>
+            <span class="tech-badge">Git</span>
         </div>
         """, unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
     
-    # Main content - simplified structure
+    # Main content - rule-based AI assistant
     st.markdown('<div class="chat-interface">', unsafe_allow_html=True)
-    
-    # Messages container - no header or title anymore
+
+    # Simple welcome banner highlighting rule-based functionality
+    st.markdown("""
+    <div class="welcome-banner">
+        <h1>Rule-Based AI Assistant</h1>
+        <p>Pattern matching chatbot with predefined responses and AI capabilities for complex queries</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Add pattern examples section
+    st.markdown("""
+    <div style="background-color: #1e293b; border-radius: 10px; padding: 12px 15px; margin-bottom: 15px; border-left: 3px solid #3b82f6;">
+        <div style="color: #e2e8f0; font-size: 14px; margin-bottom: 8px;">Try these pattern examples:</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <span class="pattern-indicator">hello</span>
+            <span class="pattern-indicator">who are you</span>
+            <span class="pattern-indicator">tell me a joke</span>
+            <span class="pattern-indicator">thank you</span>
+            <span class="pattern-indicator">capabilities</span>
+            <span class="pattern-indicator">bye</span>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Messages container
     st.markdown('<div class="messages-container">', unsafe_allow_html=True)
-    
-    # Display welcome message if no messages yet - simplified
+
+    # Display welcome message if no messages yet - focused on rule-based functionality
     if not st.session_state.messages:
         st.markdown("""
         <div class="welcome-container">
             <img src="https://img.icons8.com/fluency/96/000000/chatbot.png" style="width: 80px; margin-bottom: 15px;" alt="Chatbot Icon">
-            <p style="color: #94a3b8; font-size: 16px; margin-bottom: 5px;">Start chatting with your AI Assistant</p>
-            <p style="color: #64748b; font-size: 14px;">Type a message below to begin</p>
+            <p style="color: #f8fafc; font-size: 16px; margin-bottom: 8px;">Rule-Based AI Assistant Ready!</p>
+            <p style="color: #94a3b8; font-size: 14px;">Ask me predefined questions or try more complex queries</p>
         </div>
         """, unsafe_allow_html=True)
     
-    # Display chat messages with emojis and better formatting
+    # Display chat messages with pattern indicators for rule-based responses
     for message in st.session_state.messages:
         if message["role"] == "user":
             st.markdown(f'<div class="message user-message">{message["content"]}</div>', unsafe_allow_html=True)
         else:
-            # Add emojis to make responses more engaging
+            # Get content
             content = message["content"]
+            
             # Only add emoji if not already present
             if not any(char in content[:2] for char in ['😊', '👋', '🤖', '💡', '🚀', '📊', '⚠️', '🤔', '👍', '✨', '🙏', '😄']):
                 # Add relevant emojis based on content
@@ -745,38 +816,49 @@ def main():
                 else:
                     content = "💡 " + content
                 
-            st.markdown(f'<div class="message bot-message">{content}</div>', unsafe_allow_html=True)
+            # Check if this was a rule-based match and add the pattern indicator
+            pattern_indicator = ""
+            if message.get("matched", False):
+                pattern = message.get("pattern", "")
+                if pattern:
+                    pattern_indicator = f'<div style="margin-top: 8px; font-size: 12px; color: #93c5fd;"><span class="pattern-indicator">rule</span> Matched pattern: <code>{pattern}</code></div>'
+            
+            # Add AI indicator for non-rule responses
+            elif "matched" in message and not message["matched"]:
+                pattern_indicator = '<div style="margin-top: 8px; font-size: 12px; color: #93c5fd;"><span class="pattern-indicator">ai</span> No rule pattern matched - using AI response</div>'
+                
+            st.markdown(f'<div class="message bot-message">{content}{pattern_indicator}</div>', unsafe_allow_html=True)
     
     st.markdown('</div>', unsafe_allow_html=True)
     
-    # Input area with fully integrated footer at the bottom
+    # Input area with integrated footer
     st.markdown('<div class="input-area">', unsafe_allow_html=True)
 
     # Using a form to handle Enter key press
     with st.form(key="message_form", clear_on_submit=True):
-        col1, col2 = st.columns([7, 1])
+        cols = st.columns([7, 1])
         
-        with col1:
+        with cols[0]:
             st.markdown('<div class="input-container">', unsafe_allow_html=True)
-            # Text input
+            # Text input with hint for rule-based queries
             user_input = st.text_input(
                 "Message",
                 key="user_input",
-                placeholder="Type your message here...",
+                placeholder="Ask me a question (try: 'hello', 'who are you', 'tell me a joke')",
                 label_visibility="collapsed"
             )
             st.markdown('</div>', unsafe_allow_html=True)
         
-        with col2:
+        with cols[1]:
             # Add some vertical spacing to align the button
             st.markdown('<div style="height: 5px;"></div>', unsafe_allow_html=True)
             # Create a visible submit button with a send icon
             submitted = st.form_submit_button("↑", type="primary", help="Send message")
         
-        # Footer info fully integrated with chat input - no separate footer
+        # Footer info fully integrated with chat input
         st.markdown("""
         <div class="footer-info">
-            © 2025 Nandesh Kalashetti | AI Assistant
+            © 2025 Nandesh Kalashetti | Rule-Based Chatbot with AI Capabilities
         </div>
         """, unsafe_allow_html=True)
     
