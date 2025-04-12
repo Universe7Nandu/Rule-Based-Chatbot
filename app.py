@@ -1046,7 +1046,6 @@ def main():
     st.markdown('</div>', unsafe_allow_html=True)
     
     # Input area with form with better column proportions
-    st.markdown('<div class="input-area">', unsafe_allow_html=True)
 
     with st.form(key="message_form", clear_on_submit=True):
         col1, col2 = st.columns([20, 1])
