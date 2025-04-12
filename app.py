@@ -159,6 +159,7 @@ def load_css():
         display: flex;
         align-items: center;
         background-color: #1e293b;
+        position:absolute;
         border-radius: 12px;
         padding: 8px 8px 8px 15px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
@@ -189,11 +190,10 @@ def load_css():
         background-color: transparent !important;
         color: #f8fafc !important;
         border: none !important;
-        padding: 12px 0 !important;
         font-size: 16px !important;
         width: 100% !important;
-        margin: 0 !important;
         height: 40px !important;
+        margin-bottom:0px;
     }
     
     /* Hide form label */
