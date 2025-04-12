@@ -9,8 +9,8 @@ from groq import Groq
 
 # Set page config (must be first Streamlit command)
 st.set_page_config(
-    page_title="TravelPro AI Assistant",
-    page_icon="✈️",
+    page_title="AI Assistant | Nandesh Kalashetti",
+    page_icon="🤖",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -118,7 +118,7 @@ def load_css():
         left: -15px;
         width: 35px;
         height: 35px;
-        background-image: url('https://img.icons8.com/fluency/96/000000/chatbot.png');
+        background-image: url('https://img.icons8.com/color/96/000000/bot.png');
         background-size: cover;
         border-radius: 50%;
         border: 2px solid #3b82f6;
@@ -475,67 +475,35 @@ def load_css():
         }
     }
 
-    /* Travel banner styling */
-    .travel-banner {
-        background: linear-gradient(135deg, #9333ea, #7e22ce);
+    /* Welcome banner styling */
+    .welcome-banner {
+        background: linear-gradient(135deg, #1e40af, #3b82f6);
         color: white;
         border-radius: 12px;
-        padding: 25px 30px;
-        margin-bottom: 25px;
+        padding: 20px 25px;
+        margin-bottom: 20px;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         animation: fadeIn 0.5s ease-out;
         text-align: left;
     }
 
-    .travel-banner h1 {
-        font-size: 32px;
-        font-weight: 700;
-        margin-bottom: 10px;
+    .welcome-banner h1 {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 8px;
     }
 
-    .travel-banner p {
-        font-size: 16px;
+    .welcome-banner p {
+        font-size: 15px;
         opacity: 0.9;
-        line-height: 1.5;
-    }
-
-    /* Suggestion buttons */
-    .suggestion-title {
-        color: #f8fafc;
-        font-size: 16px;
-        margin: 5px 0 15px 0;
-    }
-
-    .suggestion-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-bottom: 20px;
-    }
-
-    .suggestion-button {
-        background-color: #1e293b;
-        color: #e2e8f0;
-        border-radius: 30px;
-        padding: 8px 15px;
-        font-size: 14px;
-        cursor: pointer;
-        transition: all 0.2s;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        display: inline-block;
-        text-align: center;
-    }
-
-    .suggestion-button:hover {
-        background-color: #2d3c50;
-        transform: translateY(-2px);
+        line-height: 1.4;
     }
 
     /* Divider line */
     .divider {
         height: 1px;
-        background: linear-gradient(to right, rgba(255,255,255,0.05), rgba(255,255,255,0.2), rgba(255,255,255,0.05));
-        margin: 20px 0;
+        background: linear-gradient(to right, rgba(255,255,255,0.05), rgba(255,255,255,0.15), rgba(255,255,255,0.05));
+        margin: 15px 0;
         width: 100%;
     }
     </style>
@@ -548,67 +516,53 @@ def init_session_state():
     if 'chat_history' not in st.session_state:
         st.session_state.chat_history = []
     if 'rules' not in st.session_state:
-        # Define travel-themed rule patterns
+        # Define general rule patterns
         st.session_state.rules = [
             {
                 'patterns': [r'hello|hi|hey|greetings', r'^hi$'],
-                'responses': ["👋 Hello, travel enthusiast! How can I help plan your next adventure?", "👋 Hi there! Ready to explore new destinations?", "👋 Hey traveler! Where are you thinking of going next?"]
+                'responses': ["👋 Hello! How can I help you today?", "👋 Hi there! What can I assist you with?", "👋 Hey! I'm here to help. What's on your mind?"]
             },
             {
                 'patterns': [r'who are you|what are you|tell me about yourself'],
-                'responses': ["🧳 I'm TravelPro, your AI travel assistant created by Nandesh Kalashetti. I can help with destinations, itineraries, budgets, and travel tips!"]
+                'responses': ["🤖 I'm an AI assistant created by Nandesh Kalashetti. I'm designed to provide helpful responses to your questions!"]
             },
             {
                 'patterns': [r'bye|goodbye|see you|farewell'],
-                'responses': ["✈️ Bon voyage! Happy travels!", "🌍 Safe travels! Come back when you need more travel advice!", "👋 Enjoy your journey! See you next time!"]
+                'responses': ["👋 Goodbye! Have a great day!", "✨ See you later! Take care!", "👋 Farewell! Come back soon!"]
             },
             {
                 'patterns': [r'thank you|thanks'],
-                'responses': ["🏝️ You're welcome! Enjoy your travels!", "🗺️ Happy to help with your travel plans! Anything else you need?"]
+                'responses': ["😊 You're welcome! Anything else you need help with?", "🙏 Happy to help! Let me know if you need anything else."]
             },
             {
                 'patterns': [r'what can you do|help|capabilities'],
-                'responses': ["🧳 I can recommend destinations, help plan itineraries, suggest travel budgets, provide packing tips, and answer questions about attractions, accommodations, and local customs!"]
+                'responses': ["🚀 I can answer questions, provide information, assist with various tasks, and engage in natural conversations. Just ask me anything!"]
             },
             {
-                'patterns': [r'weather|temperature|climate'],
-                'responses': ["🌦️ Weather is a crucial factor in travel planning! I can give you general climate info for destinations, though I don't have real-time weather data."]
+                'patterns': [r'your name'],
+                'responses': ["🤖 I'm your AI assistant, created by Nandesh Kalashetti."]
             },
             {
-                'patterns': [r'best time|when to visit|season'],
-                'responses': ["🗓️ The best time to visit depends on what you're looking for - lower prices in off-season, good weather, or special festivals. I can help you decide!"]
+                'patterns': [r'how are you'],
+                'responses': ["😊 I'm doing well, thank you! How about you?", "🌟 I'm functioning perfectly! How can I brighten your day?"]
             },
             {
-                'patterns': [r'budget|cost|expensive|cheap'],
-                'responses': ["💰 Travel budgets vary widely based on destination, accommodation type, dining preferences, and activities. I can help you plan for any budget level!"]
+                'patterns': [r'who (is|made) (you|this)|creator|developer'],
+                'responses': ["👨‍💻 I was created by Nandesh Kalashetti, a talented full-stack developer specializing in MERN stack, React.js, TypeScript, PHP, and MySQL."]
             },
             {
-                'patterns': [r'flight|airplane|airport|booking'],
-                'responses': ["✈️ For the best flight deals, I recommend booking 1-3 months in advance for domestic and 2-6 months for international flights. Flexible dates often yield better prices!"]
+                'patterns': [r'project|about this chatbot'],
+                'responses': ["🚀 This is an advanced AI chatbot with rule-based intelligence. I use pattern matching for quick responses and AI capabilities for complex questions!"]
             },
             {
-                'patterns': [r'hotel|stay|accommodation|hostel'],
-                'responses': ["🏨 Your accommodation choice can make or break a trip! From luxury hotels to budget hostels, I can suggest options based on your preferences and budget."]
+                'patterns': [r'joke|tell me a joke|make me laugh'],
+                'responses': ["😄 Why don't scientists trust atoms? Because they make up everything!", 
+                             "😂 Why did the JavaScript developer wear glasses? Because he couldn't C#!",
+                             "🤣 Why do programmers prefer dark mode? Because light attracts bugs!"]
             },
             {
-                'patterns': [r'food|eat|restaurant|cuisine'],
-                'responses': ["🍽️ Trying local cuisine is one of the best parts of traveling! I can recommend signature dishes and dining experiences for destinations worldwide."]
-            },
-            {
-                'patterns': [r'safety|safe|danger'],
-                'responses': ["🛡️ Safety is paramount when traveling. Research local laws, get travel insurance, keep digital copies of documents, and register with your embassy when visiting foreign countries."]
-            },
-            {
-                'patterns': [r'pack|packing|suitcase|luggage'],
-                'responses': ["🧳 Smart packing is an art! Make a list, pack versatile clothing, roll don't fold, and always leave some space for souvenirs!"]
-            },
-            {
-                'patterns': [r'itinerary|plan|schedule|days'],
-                'responses': ["📅 A good itinerary balances sightseeing with downtime. I recommend not overpacking your schedule - leave room for spontaneous discoveries!"]
-            },
-            {
-                'patterns': [r'india|indian|mumbai|delhi|goa|jaipur'],
-                'responses': ["🇮🇳 India offers incredible diversity - from the beaches of Goa to the Taj Mahal in Agra, bustling Mumbai to serene Kerala backwaters. What part are you interested in exploring?"]
+                'patterns': [r'time|what time|date|what date'],
+                'responses': ["⏰ I don't have access to the current time or date, but your device should show that information!"]
             }
         ]
 
@@ -632,7 +586,7 @@ def get_ai_response(query):
         with st.spinner(""):
             chat_completion = client.chat.completions.create(
                 messages=[
-                    {"role": "system", "content": "You are TravelPro, a helpful AI travel assistant created by Nandesh Kalashetti. Provide concise, informative travel advice about destinations, itineraries, budgets, accommodations, attractions, local customs, and travel tips. Use emojis to make your responses engaging. Focus on being practical and specific with travel recommendations. If asked about an Indian destination, provide especially detailed information. Format important details in bold when helpful."},
+                    {"role": "system", "content": "You are a helpful, friendly assistant created by Nandesh Kalashetti. Provide concise, informative responses to user queries. Use emojis occasionally to make your responses engaging but maintain a professional tone. Format important information with bold when helpful. Be conversational yet efficient. Keep responses under 100 words when possible."},
                     {"role": "user", "content": query}
                 ],
                 model="llama3-8b-8192",  # Efficient model
@@ -645,7 +599,7 @@ def get_ai_response(query):
             return chat_completion.choices[0].message.content
     except Exception as e:
         st.error(f"Error connecting to Groq API: {str(e)}")
-        return "🧳 I'm having trouble connecting to my travel database right now. Please try again in a moment."
+        return "😕 I'm having trouble connecting right now. Please try again in a moment."
 
 # Function to add to chat history
 def add_to_chat_history(query):
@@ -734,85 +688,63 @@ def main():
         st.markdown("<h3 style='color: #f8fafc; font-size: 15px; margin: 20px 0 5px;'>Features</h3>", unsafe_allow_html=True)
         st.markdown("""
         <div class="feature-card">
-            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">✈️ Destination Advice</h4>
-            <p style="color: #94a3b8; font-size: 12px;">Recommendations for your next journey</p>
+            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">🧠 Rule-Based Intelligence</h4>
+            <p style="color: #94a3b8; font-size: 12px;">Quick responses to common questions</p>
         </div>
         
         <div class="feature-card">
-            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">🗓️ Itinerary Planning</h4>
-            <p style="color: #94a3b8; font-size: 12px;">Optimized travel schedules</p>
+            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">🤖 AI Integration</h4>
+            <p style="color: #94a3b8; font-size: 12px;">Powered by Groq LLM API</p>
         </div>
         
         <div class="feature-card">
-            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">💰 Budget Tips</h4>
-            <p style="color: #94a3b8; font-size: 12px;">Travel within your means</p>
+            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">💬 Natural Conversations</h4>
+            <p style="color: #94a3b8; font-size: 12px;">Context-aware dialogue</p>
         </div>
         
         <div class="feature-card">
-            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">🧳 Packing Lists</h4>
-            <p style="color: #94a3b8; font-size: 12px;">Never forget essentials</p>
+            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">📱 Responsive Design</h4>
+            <p style="color: #94a3b8; font-size: 12px;">Works on all devices</p>
         </div>
         """, unsafe_allow_html=True)
         
         # Tech stack
-        st.markdown("<h3 style='color: #f8fafc; font-size: 15px; margin: 20px 0 5px;'>Powered By</h3>", unsafe_allow_html=True)
+        st.markdown("<h3 style='color: #f8fafc; font-size: 15px; margin: 20px 0 5px;'>Tech Stack</h3>", unsafe_allow_html=True)
         st.markdown("""
         <div style="display: flex; flex-wrap: wrap; gap: 5px;">
             <span class="tech-badge">Python</span>
             <span class="tech-badge">Streamlit</span>
             <span class="tech-badge">Groq API</span>
             <span class="tech-badge">LLaMA 3</span>
-            <span class="tech-badge">Travel Data</span>
+            <span class="tech-badge">CSS3</span>
         </div>
         """, unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
     
-    # Main content - TravelPro UI design
+    # Main content - clean and formal UI design
     st.markdown('<div class="chat-interface">', unsafe_allow_html=True)
 
-    # TravelPro banner at the top
+    # Simple welcome banner
     st.markdown("""
-    <div class="travel-banner">
-        <h1>TravelPro AI Assistant</h1>
-        <p>Ask me anything about travel planning, destinations, budgets, or itineraries! I'm here to help make your next journey unforgettable.</p>
+    <div class="welcome-banner">
+        <h1>AI Assistant</h1>
+        <p>Welcome to your personal AI assistant. Ask any question to get started.</p>
     </div>
     """, unsafe_allow_html=True)
-
-    # Suggestions for travel questions
-    st.markdown('<p class="suggestion-title">Need inspiration? Try asking:</p>', unsafe_allow_html=True)
-    st.markdown('<div class="suggestion-container">', unsafe_allow_html=True)
-
-    # Create suggestion buttons with JavaScript to set input value
-    suggestions = [
-        "What's the best time to visit Goa?",
-        "What are must-see attractions in Mumbai?",
-        "How much should I budget for a week in Delhi?",
-        "Suggest a 3-day itinerary for Jaipur"
-    ]
-
-    for suggestion in suggestions:
-        suggestion_escaped = suggestion.replace("'", "\\'")
-        st.markdown(f"""
-        <div class="suggestion-button" onclick="document.querySelector('input[aria-label=Message]').value='{suggestion_escaped}'; document.querySelector('input[aria-label=Message]').dispatchEvent(new Event('input', {{ bubbles: true }}));">
-            {suggestion}
-        </div>
-        """, unsafe_allow_html=True)
-
-    st.markdown('</div>', unsafe_allow_html=True)
 
     # Divider line
     st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
 
     # Messages container 
     st.markdown('<div class="messages-container">', unsafe_allow_html=True)
-    
-    # Display welcome message if no messages yet - TravelPro themed
+
+    # Display welcome message if no messages yet - clean and simple
     if not st.session_state.messages:
         st.markdown("""
         <div class="welcome-container">
-            <img src="https://img.icons8.com/fluency/96/000000/globe.png" style="width: 80px; margin-bottom: 15px;" alt="Travel Icon">
-            <p style="color: #f8fafc; font-size: 16px; margin-bottom: 8px;">Your AI travel companion is ready to help!</p>
-            <p style="color: #94a3b8; font-size: 14px;">Ask any travel-related question using the box below</p>
+            <img src="https://img.icons8.com/fluency/96/000000/chatbot.png" style="width: 80px; margin-bottom: 15px;" alt="AI Assistant Icon">
+            <p style="color: #f8fafc; font-size: 16px; margin-bottom: 8px;">How can I assist you today?</p>
+            <p style="color: #94a3b8; font-size: 14px;">Type your question in the box below</p>
         </div>
         """, unsafe_allow_html=True)
     
@@ -859,7 +791,7 @@ def main():
     
     st.markdown('</div>', unsafe_allow_html=True)
     
-    # Input area with fully integrated footer - TravelPro style
+    # Input area with integrated footer - simple and formal
     st.markdown('<div class="input-area">', unsafe_allow_html=True)
 
     # Using a form to handle Enter key press
@@ -868,23 +800,23 @@ def main():
         
         with cols[0]:
             st.markdown('<div class="input-container">', unsafe_allow_html=True)
-            # Text input with travel-themed placeholder
+            # Text input with simple placeholder
             user_input = st.text_input(
                 "Message",
                 key="user_input",
-                placeholder="Type your travel question here...",
+                placeholder="Type your message here...",
                 label_visibility="collapsed"
             )
             st.markdown('</div>', unsafe_allow_html=True)
         
         with cols[1]:
-            # Send button with upward arrow
+            # Send button
             submitted = st.form_submit_button("", type="primary", help="Send message")
         
-        # Simple, unobtrusive footer
+        # Simple footer
         st.markdown("""
         <div class="footer-info">
-            © 2025 Nandesh Kalashetti | AI Travel Assistant
+            © 2025 Nandesh Kalashetti | AI Assistant
         </div>
         """, unsafe_allow_html=True)
     
