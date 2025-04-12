@@ -38,7 +38,7 @@ def load_css():
     body {
         background-color: #0e1525;
         color: #f8fafc;
-        background-image: radial-gradient(circle at 50% 50%, #131c31 0%, #0e1525 100%);
+        background-image: radial-gradient(circle at 50% 50%, #151f38 0%, #0e1525 100%);
     }
     
     /* Chat interface */
@@ -49,20 +49,21 @@ def load_css():
         padding: 0;
         background-color: transparent;
         position: relative;
-        padding-bottom: 90px; /* Space for input area */
+        padding-bottom: 80px; /* Space for input area */
     }
     
     /* Messages container */
     .messages-container {
         flex: 1;
         overflow-y: auto;
-        padding: 0px 20px 100px 20px;
+        padding: 10px 20px 100px 20px;
         display: flex;
         flex-direction: column;
         gap: 15px;
-        max-width: 1000px;
+        max-width: 900px;
         margin: 0 auto;
         width: 100%;
+        scroll-behavior: smooth;
     }
     
     /* Message styles */
@@ -124,17 +125,17 @@ def load_css():
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     }
     
-    /* Input area - fixed to bottom */
+    /* Input area - fixed to bottom with improved design */
     .input-area {
         position: fixed;
         bottom: 0;
         left: 0;
         right: 0;
-        padding: 15px 15px 10px 15px;
-        background: linear-gradient(to top, #0e1525, rgba(14, 21, 37, 0.95));
+        padding: 15px 20px 20px 20px;
+        background: #0f1624;
         z-index: 100;
-        border-top: 1px solid rgba(59, 130, 246, 0.2);
-        backdrop-filter: blur(8px);
+        border-top: 1px solid rgba(59, 130, 246, 0.1);
+        box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.4);
     }
     
     /* Form styling improvements */
@@ -143,27 +144,28 @@ def load_css():
         border: none !important;
         padding: 0 !important;
         margin: 0 !important;
+        max-width: 900px !important;
+        margin: 0 auto !important;
     }
     
+    /* Input container styling */
     .input-container {
         display: flex;
         align-items: center;
-        background-color: #1e293b;
-        border-radius: 25px;
-        padding: 8px 8px 8px 20px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        background-color: #1b2435;
+        border-radius: 8px;
+        padding: 6px 5px 6px 15px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
         margin: 0 auto;
         width: 100%;
-        max-width: 800px;
-        height: 55px;
-        transition: all 0.3s ease;
-        border: 1px solid rgba(59, 130, 246, 0.3);
+        height: 42px;
+        transition: all 0.2s ease;
+        border: 1px solid rgba(59, 130, 246, 0.1);
     }
     
     .input-container:focus-within {
-        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
-        border: 1px solid rgba(59, 130, 246, 0.6);
-        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+        border: 1px solid rgba(59, 130, 246, 0.3);
     }
     
     /* Fix for Streamlit inputs */
@@ -208,38 +210,40 @@ def load_css():
         margin-bottom: 0 !important;
     }
     
-    /* Send button improvements */
+    /* Send button improvements for perfect match */
     button[kind="primary"] {
-        background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
+        background: #f43f5e !important;
         color: white !important;
         border: none !important;
-        border-radius: 50% !important;
-        width: 40px !important;
-        height: 40px !important;
-        padding: 10px !important;
+        border-radius: 8px !important;
+        width: 38px !important;
+        height: 38px !important;
+        padding: 0px !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
         cursor: pointer !important;
-        transition: all 0.3s ease !important;
-        box-shadow: 0 4px 12px rgba(29, 78, 216, 0.4) !important;
+        transition: all 0.15s ease !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
         min-width: unset !important;
+        margin: 0 !important;
+        font-size: 0 !important;
     }
     
     button[kind="primary"]:hover {
-        transform: scale(1.1) !important;
-        box-shadow: 0 6px 18px rgba(29, 78, 216, 0.5) !important;
-    }
-    
-    .stButton button p {
-        display: none;
+        background: #e11d48 !important;
+        transform: translateY(-1px) !important;
     }
     
     .stButton button::before {
         content: "↑";
-        font-size: 18px;
+        font-size: 22px;
         font-weight: bold;
         color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: -2px;
     }
     
     /* Welcome container - made simpler without title */
@@ -399,14 +403,13 @@ def load_css():
         background-color: #3b82f6;
     }
     
-    /* Footer info in chat input - fully integrated */
+    /* Footer info in chat input - minimal and centered */
     .footer-info {
         text-align: center;
         color: #64748b;
-        font-size: 11px;
-        margin-top: 10px;
-        padding-bottom: 5px;
-        opacity: 0.7;
+        font-size: 10px;
+        margin-top: 6px;
+        opacity: 0.6;
     }
     
     /* Mobile responsiveness */
@@ -749,16 +752,16 @@ def main():
     
     st.markdown('</div>', unsafe_allow_html=True)
     
-    # Input area with fully integrated footer at the bottom
+    # Input area with fully integrated footer at the bottom - improved ChatGPT-like design
     st.markdown('<div class="input-area">', unsafe_allow_html=True)
 
     # Using a form to handle Enter key press
     with st.form(key="message_form", clear_on_submit=True):
-        col1, col2 = st.columns([7, 1])
+        cols = st.columns([30, 1])
         
-        with col1:
+        with cols[0]:
             st.markdown('<div class="input-container">', unsafe_allow_html=True)
-            # Text input
+            # Text input with improved placeholder
             user_input = st.text_input(
                 "Message",
                 key="user_input",
@@ -767,13 +770,11 @@ def main():
             )
             st.markdown('</div>', unsafe_allow_html=True)
         
-        with col2:
-            # Add some vertical spacing to align the button
-            st.markdown('<div style="height: 5px;"></div>', unsafe_allow_html=True)
-            # Create a visible submit button with a send icon
-            submitted = st.form_submit_button("↑", type="primary", help="Send message")
+        with cols[1]:
+            # Send button with upward arrow
+            submitted = st.form_submit_button("", type="primary", help="Send message")
         
-        # Footer info fully integrated with chat input - no separate footer
+        # Simple, unobtrusive footer
         st.markdown("""
         <div class="footer-info">
             © 2025 Nandesh Kalashetti | AI Assistant
