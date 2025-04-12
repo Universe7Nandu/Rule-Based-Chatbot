@@ -4,14 +4,12 @@ import re
 import os
 import time
 import random
-import json
 from dotenv import load_dotenv
 from groq import Groq
-from datetime import datetime
 
 # Set page config (must be first Streamlit command)
 st.set_page_config(
-    page_title="Rule-Based AI Assistant | Nandesh Kalashetti",
+    page_title="AI Assistant | Nandesh Kalashetti",
     page_icon="🤖",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -45,50 +43,43 @@ def load_css():
     
     /* Chat interface */
     .chat-interface {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
+        min-height: 100vh;
         display: flex;
         flex-direction: column;
         padding: 0;
         background-color: transparent;
-        overflow: hidden;
-        max-width: 100%;
+        position: relative;
+        padding-bottom: 90px; /* Space for input area */
     }
     
-    /* Messages container with proper scroll area */
+    /* Messages container */
     .messages-container {
         flex: 1;
         overflow-y: auto;
-        padding: 0px 20px 80px 20px;
+        padding: 0px 20px 100px 20px;
         display: flex;
         flex-direction: column;
-        gap: 12px;
-        max-width: 850px;
+        gap: 15px;
+        max-width: 1000px;
         margin: 0 auto;
         width: 100%;
-        scroll-behavior: smooth;
-        height: calc(100vh - 160px);
-        margin-bottom: 70px;
     }
     
     /* Message styles */
     .message {
-        padding: 14px 18px;
-        margin-bottom: 12px;
-        border-radius: 14px;
+        padding: 15px 20px;
+        margin-bottom: 15px;
+        border-radius: 15px;
         max-width: 80%;
         animation: fadeIn 0.3s ease-out;
         word-wrap: break-word;
         line-height: 1.5;
-        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
         position: relative;
     }
     
     .user-message {
-        background: linear-gradient(135deg, #3b82f6, #2563eb);
+        background: linear-gradient(135deg, #3b82f6, #1e40af);
         color: white;
         align-self: flex-end;
         border-radius: 18px 18px 0 18px;
@@ -133,17 +124,17 @@ def load_css():
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     }
     
-    /* Input area - professional design */
+    /* Input area - fixed to bottom */
     .input-area {
         position: fixed;
         bottom: 0;
         left: 0;
         right: 0;
-        padding: 12px 15px;
-        background: #0e1525;
+        padding: 15px 15px 10px 15px;
+        background: linear-gradient(to top, #0e1525, rgba(14, 21, 37, 0.95));
         z-index: 100;
-        border-top: 1px solid rgba(59, 130, 246, 0.15);
-        box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
+        border-top: 1px solid rgba(59, 130, 246, 0.2);
+        backdrop-filter: blur(8px);
     }
     
     /* Form styling improvements */
@@ -154,20 +145,19 @@ def load_css():
         margin: 0 !important;
     }
     
-    /* Input container improved */
     .input-container {
         display: flex;
         align-items: center;
         background-color: #1e293b;
-        border-radius: 10px;
-        padding: 8px 8px 8px 15px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        border-radius: 25px;
+        padding: 8px 8px 8px 20px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         margin: 0 auto;
         width: 100%;
-        max-width: 850px;
-        height: 45px;
-        transition: all 0.2s ease;
-        border: 1px solid rgba(59, 130, 246, 0.15);
+        max-width: 800px;
+        height: 55px;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(59, 130, 246, 0.3);
     }
     
     .input-container:focus-within {
@@ -218,58 +208,51 @@ def load_css():
         margin-bottom: 0 !important;
     }
     
-    /* Send button improvements for perfect positioning */
+    /* Send button improvements */
     button[kind="primary"] {
-        background: #ef4444 !important;
+        background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
         color: white !important;
         border: none !important;
-        border-radius: 8px !important;
-        width: 38px !important;
-        height: 38px !important;
-        padding: 0 !important;
+        border-radius: 50% !important;
+        width: 40px !important;
+        height: 40px !important;
+        padding: 10px !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
         cursor: pointer !important;
-        transition: all 0.15s ease !important;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+        transition: all 0.3s ease !important;
+        box-shadow: 0 4px 12px rgba(29, 78, 216, 0.4) !important;
         min-width: unset !important;
-        margin-top: 5px !important;
     }
     
     button[kind="primary"]:hover {
-        background: #dc2626 !important;
-        transform: translateY(-1px) !important;
+        transform: scale(1.1) !important;
+        box-shadow: 0 6px 18px rgba(29, 78, 216, 0.5) !important;
+    }
+    
+    .stButton button p {
+        display: none;
     }
     
     .stButton button::before {
         content: "↑";
-        font-size: 20px;
+        font-size: 18px;
         font-weight: bold;
         color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
     
-    /* Welcome container */
+    /* Welcome container - made simpler without title */
     .welcome-container {
         text-align: center;
-        padding: 30px 20px;
+        padding: 40px 20px;
         color: #94a3b8;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        min-height: 250px;
-        margin-top: 20px;
-    }
-    
-    .welcome-container img {
-        width: 70px;
-        height: 70px;
-        margin-bottom: 20px;
-        filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+        height: calc(100vh - 180px);
+        margin-top: -20px;
     }
     
     /* Sidebar styling */
@@ -416,6 +399,16 @@ def load_css():
         background-color: #3b82f6;
     }
     
+    /* Footer info in chat input - fully integrated */
+    .footer-info {
+        text-align: center;
+        color: #64748b;
+        font-size: 11px;
+        margin-top: 10px;
+        padding-bottom: 5px;
+        opacity: 0.7;
+    }
+    
     /* Mobile responsiveness */
     @media (max-width: 768px) {
         .message {
@@ -478,71 +471,6 @@ def load_css():
             padding: 0px 10px 100px 10px;
         }
     }
-
-    /* Welcome banner styling */
-    .welcome-banner {
-        background: linear-gradient(135deg, #1e293b, #111827);
-        color: white;
-        border-radius: 8px;
-        padding: 15px 18px;
-        margin: 10px auto 12px auto;
-        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
-        animation: fadeIn 0.5s ease-out;
-        text-align: left;
-        border-left: 3px solid #3b82f6;
-        max-width: 850px;
-        width: 100%;
-    }
-
-    .welcome-banner h1 {
-        font-size: 18px;
-        font-weight: 600;
-        margin-bottom: 5px;
-    }
-
-    .welcome-banner p {
-        font-size: 13px;
-        opacity: 0.9;
-        line-height: 1.4;
-    }
-
-    /* Pattern examples section */
-    .patterns-section {
-        background-color: #1e293b;
-        border-radius: 8px;
-        padding: 12px 15px;
-        margin: 0 auto 12px auto;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        border-left: 2px solid #3b82f6;
-        max-width: 850px;
-        width: 100%;
-    }
-
-    /* Responsive fixes */
-    @media (min-width: 992px) {
-        .welcome-banner, .patterns-section, .messages-container, .input-container {
-            max-width: 850px;
-        }
-    }
-
-    @media (min-width: 1200px) {
-        .welcome-banner, .patterns-section, .messages-container, .input-container {
-            max-width: 900px;
-        }
-    }
-
-    /* Rule pattern indicators */
-    .pattern-indicator {
-        display: inline-block;
-        background-color: rgba(59, 130, 246, 0.15);
-        border: 1px solid rgba(59, 130, 246, 0.3);
-        color: #93c5fd;
-        border-radius: 4px;
-        padding: 1px 5px;
-        font-size: 11px;
-        margin-right: 5px;
-        font-family: monospace;
-    }
     </style>
     """, unsafe_allow_html=True)
 
@@ -550,12 +478,8 @@ def load_css():
 def init_session_state():
     if 'messages' not in st.session_state:
         st.session_state.messages = []
-    if 'first_prompt' not in st.session_state:
-        st.session_state.first_prompt = True
-    if 'conversation_started' not in st.session_state:
-        st.session_state.conversation_started = False
     if 'chat_history' not in st.session_state:
-        st.session_state.chat_history = []  # For keeping track of recent conversations
+        st.session_state.chat_history = []
     if 'rules' not in st.session_state:
         # Define rule patterns with improved responses and emojis
         st.session_state.rules = [
@@ -611,143 +535,71 @@ def init_session_state():
             }
         ]
 
-# Function to get response based on pattern matching rules
-def get_response(user_input):
+# Function to match user input with rule patterns - improved for faster response
+def find_response(user_input):
     user_input = user_input.lower().strip()
     
-    # More sophisticated patterns with variations
-    patterns = {
-        r"\b(hi|hello|hey|hola|namaste|greetings)\b": {
-            "responses": [
-                "Hello! How can I assist you today?",
-                "Hi there! What can I help you with?",
-                "Greetings! How may I be of service?",
-                "Hello! It's nice to meet you. What brings you here today?"
-            ],
-            "pattern_display": "hello"
-        },
-        r"\b(who are you|tell me about yourself|what are you|your identity)\b": {
-            "responses": [
-                "I'm an AI assistant designed to provide helpful responses based on rule patterns. I can answer questions, have conversations, and assist with various tasks.",
-                "I'm your digital assistant, built to help answer questions and provide information through pattern-based responses.",
-                "I'm an AI chatbot created to assist users through natural language interactions. My responses are based on predefined patterns that I match with your questions."
-            ],
-            "pattern_display": "who are you"
-        },
-        r"\b(how are you|how do you feel|how are you doing|how are you feeling)\b": {
-            "responses": [
-                "I'm functioning well, thank you for asking! How about you?",
-                "I'm doing great! Always ready to help. How can I assist you today?",
-                "I'm operating at optimal levels! Thanks for checking. What can I help you with?"
-            ],
-            "pattern_display": "how are you"
-        },
-        r"\b(joke|tell me a joke|make me laugh|something funny)\b": {
-            "responses": [
-                "Why don't scientists trust atoms? Because they make up everything!",
-                "Why did the scarecrow win an award? Because he was outstanding in his field!",
-                "I told my wife she was drawing her eyebrows too high. She looked surprised!",
-                "What do you call a fake noodle? An impasta!"
-            ],
-            "pattern_display": "tell me a joke"
-        },
-        r"\b(thank you|thanks|thx|ty)\b": {
-            "responses": [
-                "You're welcome! Is there anything else I can help with?",
-                "Happy to help! Let me know if you need anything else.",
-                "Anytime! Feel free to ask if you have more questions."
-            ],
-            "pattern_display": "thank you"
-        },
-        r"\b(bye|goodbye|see you|farewell)\b": {
-            "responses": [
-                "Goodbye! Feel free to return whenever you need assistance.",
-                "Farewell! Have a great day!",
-                "Until next time! Take care!"
-            ],
-            "pattern_display": "goodbye"
-        },
-        r"\b(help|assistance|guide me|i need help)\b": {
-            "responses": [
-                "I'm here to help! You can ask me questions, request information, or just chat. Try asking about myself, a joke, or any general questions you might have.",
-                "I'd be happy to assist you. You can try phrases like 'hello', 'who are you', 'tell me a joke', or ask questions about various topics.",
-                "How can I assist you today? Feel free to ask questions or just chat with me."
-            ],
-            "pattern_display": "help"
-        },
-        r"\b(time|what time|current time|now)\b": {
-            "responses": [
-                f"The current time is {datetime.now().strftime('%H:%M:%S')}.",
-                f"Right now, it's {datetime.now().strftime('%I:%M %p')}.",
-                f"It's currently {datetime.now().strftime('%H:%M')} hours."
-            ],
-            "pattern_display": "what time is it"
-        },
-        r"\b(weather|temperature|forecast)\b": {
-            "responses": [
-                "I'm sorry, I don't have real-time weather data. You would need to integrate a weather API for that functionality.",
-                "I don't have access to current weather information. You could check a weather service for accurate forecasts.",
-                "I don't have the capability to check weather conditions yet. That would require integration with a weather service API."
-            ],
-            "pattern_display": "weather"
-        }
-    }
+    # Try to match with simple rules first for faster responses
+    for rule in st.session_state.rules:
+        for pattern in rule['patterns']:
+            if re.search(pattern, user_input):
+                return random.choice(rule['responses'])
     
-    # Look for matching patterns
-    for pattern, data in patterns.items():
-        if re.search(pattern, user_input):
-            return {
-                "response": random.choice(data["responses"]),
-                "matched_pattern": data["pattern_display"],
-                "is_pattern_match": True
-            }
-    
-    # Handle unknown inputs more intelligently
-    if len(user_input) < 5:
-        return {
-            "response": "I need a bit more information. Could you please elaborate on your question?",
-            "matched_pattern": None,
-            "is_pattern_match": False
-        }
-    elif "?" in user_input:
-        return {
-            "response": "That's an interesting question. I'm constantly learning, but I don't have a specific rule to answer that yet. Could you try asking something else?",
-            "matched_pattern": None,
-            "is_pattern_match": False
-        }
-    else:
-        responses = [
-            "I don't have a specific answer for that query. Could you try rephrasing or asking something else?",
-            "I'm not sure I understand what you're asking. Could you provide more details or try a different question?",
-            "I don't have that information in my knowledge base yet. Is there something else I can help with?",
-            "I'm still learning, and I don't have a pattern that matches your question. Could you try asking differently?"
-        ]
-        return {
-            "response": random.choice(responses),
-            "matched_pattern": None,
-            "is_pattern_match": False
-        }
+    # If no simple rule matches, use Groq API for more complex responses
+    return get_ai_response(user_input)
 
-# Add message to chat history
-def add_message(role, content, matched_pattern=None):
-    st.session_state.messages.append({
-        "role": role,
-        "content": content,
-        "matched_pattern": matched_pattern,
-        "timestamp": datetime.now().strftime("%H:%M")
-    })
+# Function to get response from Groq API
+def get_ai_response(query):
+    try:
+        # Empty spinner for better UX
+        with st.spinner(""):
+            chat_completion = client.chat.completions.create(
+                messages=[
+                    {"role": "system", "content": "You are a helpful, friendly assistant created by Nandesh Kalashetti. Keep your answers very concise, informative and engaging. Use emojis when appropriate but don't overdo it. Format important information with bold when needed. Be conversational yet efficient. Keep responses under 100 words when possible."},
+                    {"role": "user", "content": query}
+                ],
+                model="llama3-8b-8192",  # Efficient model
+                max_tokens=500,  # Reduced for faster responses
+                temperature=0.7,  # Good creativity balance
+                top_p=0.95,  # Better quality without sacrificing speed
+                stream=False,  # Not streaming for faster complete responses
+                timeout=10  # Set timeout to ensure fast responses
+            )
+            return chat_completion.choices[0].message.content
+    except Exception as e:
+        st.error(f"Error connecting to Groq API: {str(e)}")
+        return "😕 I'm having trouble connecting right now. Please try again in a moment."
 
-# Add function to update chat history in sidebar
+# Function to add to chat history
 def add_to_chat_history(query):
-    # Get current timestamp for the chat history entry
-    timestamp = datetime.now().strftime("%H:%M:%S")
-    
-    # Add to the beginning of the list (most recent first)
-    st.session_state.chat_history.insert(0, (query, timestamp))
-    
-    # Limit history to last 10 conversations
-    if len(st.session_state.chat_history) > 10:
-        st.session_state.chat_history = st.session_state.chat_history[:10]
+    if query not in [item[0] for item in st.session_state.chat_history]:
+        st.session_state.chat_history.insert(0, (query, time.time()))
+        # Keep only the most recent 15 queries
+        if len(st.session_state.chat_history) > 15:
+            st.session_state.chat_history = st.session_state.chat_history[:15]
+
+# Function to handle message submission
+def handle_submit():
+    if st.session_state.user_input:
+        user_message = st.session_state.user_input
+        
+        # Add to chat history
+        add_to_chat_history(user_message)
+        
+        # Add user message to chat
+        st.session_state.messages.append({"role": "user", "content": user_message})
+        
+        # Clear input
+        st.session_state.user_input = ""
+        
+        # Get bot response
+        response = find_response(user_message)
+        
+        # Add bot response to chat
+        st.session_state.messages.append({"role": "assistant", "content": response})
+        
+        # Rerun to update UI
+        st.rerun()
 
 # Main app function
 def main():
@@ -805,23 +657,23 @@ def main():
         st.markdown("<h3 style='color: #f8fafc; font-size: 15px; margin: 20px 0 5px;'>Features</h3>", unsafe_allow_html=True)
         st.markdown("""
         <div class="feature-card">
-            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">🧠 Pattern Matching</h4>
-            <p style="color: #94a3b8; font-size: 12px;">Rule-based responses to predefined questions</p>
+            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">🧠 Rule-Based Intelligence</h4>
+            <p style="color: #94a3b8; font-size: 12px;">Pattern matching for quick responses</p>
         </div>
         
         <div class="feature-card">
-            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">⚙️ Regular Expressions</h4>
-            <p style="color: #94a3b8; font-size: 12px;">Advanced pattern recognition</p>
+            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">🤖 AI Integration</h4>
+            <p style="color: #94a3b8; font-size: 12px;">Powered by Groq LLM API</p>
         </div>
         
         <div class="feature-card">
-            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">🤖 AI Fallback</h4>
-            <p style="color: #94a3b8; font-size: 12px;">For complex questions outside patterns</p>
+            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">💬 Natural Conversations</h4>
+            <p style="color: #94a3b8; font-size: 12px;">Context-aware dialogue</p>
         </div>
         
         <div class="feature-card">
-            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">📊 Unit Testing</h4>
-            <p style="color: #94a3b8; font-size: 12px;">Ensuring response reliability</p>
+            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">📱 Responsive Design</h4>
+            <p style="color: #94a3b8; font-size: 12px;">Works on all devices</p>
         </div>
         """, unsafe_allow_html=True)
         
@@ -832,62 +684,37 @@ def main():
             <span class="tech-badge">Python</span>
             <span class="tech-badge">Streamlit</span>
             <span class="tech-badge">Groq API</span>
-            <span class="tech-badge">PyTest</span>
-            <span class="tech-badge">Git</span>
+            <span class="tech-badge">LLaMA 3</span>
+            <span class="tech-badge">CSS3</span>
         </div>
         """, unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
     
-    # Main content - rule-based AI assistant
+    # Main content - simplified structure
     st.markdown('<div class="chat-interface">', unsafe_allow_html=True)
-
-    # Simple welcome banner highlighting rule-based functionality
-    st.markdown("""
-    <div class="welcome-banner">
-        <h1>Rule-Based AI Assistant</h1>
-        <p>Pattern matching chatbot with predefined responses and AI capabilities for complex queries</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-    # Add pattern examples section
-    st.markdown("""
-    <div class="patterns-section">
-        <div style="color: #e2e8f0; font-size: 13px; margin-bottom: 8px;">Try these pattern examples:</div>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <span class="pattern-indicator">hello</span>
-            <span class="pattern-indicator">who are you</span>
-            <span class="pattern-indicator">tell me a joke</span>
-            <span class="pattern-indicator">thank you</span>
-            <span class="pattern-indicator">capabilities</span>
-            <span class="pattern-indicator">bye</span>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-
-    # Messages container
+    
+    # Messages container - no header or title anymore
     st.markdown('<div class="messages-container">', unsafe_allow_html=True)
-
-    # Display welcome message if no messages yet - focused on rule-based functionality
+    
+    # Display welcome message if no messages yet - simplified
     if not st.session_state.messages:
         st.markdown("""
         <div class="welcome-container">
             <img src="https://img.icons8.com/fluency/96/000000/chatbot.png" style="width: 80px; margin-bottom: 15px;" alt="Chatbot Icon">
-            <p style="color: #f8fafc; font-size: 16px; margin-bottom: 8px;">Rule-Based AI Assistant Ready!</p>
-            <p style="color: #94a3b8; font-size: 14px;">Ask me predefined questions or try more complex queries</p>
+            <p style="color: #94a3b8; font-size: 16px; margin-bottom: 5px;">Start chatting with your AI Assistant</p>
+            <p style="color: #64748b; font-size: 14px;">Type a message below to begin</p>
         </div>
         """, unsafe_allow_html=True)
     
-    # Display chat messages with pattern indicators for rule-based responses
+    # Display chat messages with emojis and better formatting
     for message in st.session_state.messages:
         if message["role"] == "user":
             st.markdown(f'<div class="message user-message">{message["content"]}</div>', unsafe_allow_html=True)
         else:
-            # Get content
-            content = message.get("content", "")
-            
-            # Only add emoji if content exists and doesn't already have an emoji
-            emoji_list = ['😊', '👋', '🤖', '💡', '🚀', '📊', '⚠️', '🤔', '👍', '✨', '🙏', '😄']
-            if content and not any(emoji in content[:4] for emoji in emoji_list):
+            # Add emojis to make responses more engaging
+            content = message["content"]
+            # Only add emoji if not already present
+            if not any(char in content[:2] for char in ['😊', '👋', '🤖', '💡', '🚀', '📊', '⚠️', '🤔', '👍', '✨', '🙏', '😄']):
                 # Add relevant emojis based on content
                 if "hello" in content.lower() or "hi" in content.lower():
                     content = "👋 " + content
@@ -917,29 +744,21 @@ def main():
                     content = "✨ " + content
                 else:
                     content = "💡 " + content
-            
-            # Check if this was a rule-based match and add the pattern indicator
-            pattern_indicator = ""
-            if message.get("matched_pattern", None):
-                pattern_indicator = f'<div style="margin-top: 8px; font-size: 12px; color: #93c5fd;"><span class="pattern-indicator">rule</span> Matched pattern: <code>{message["matched_pattern"]}</code></div>'
-            
-            # Add AI indicator for non-rule responses
-            elif "is_pattern_match" in message and not message["is_pattern_match"]:
-                pattern_indicator = '<div style="margin-top: 8px; font-size: 12px; color: #93c5fd;"><span class="pattern-indicator">ai</span> No rule pattern matched - using AI response</div>'
                 
-            st.markdown(f'<div class="message bot-message">{content}{pattern_indicator}</div>', unsafe_allow_html=True)
+            st.markdown(f'<div class="message bot-message">{content}</div>', unsafe_allow_html=True)
     
     st.markdown('</div>', unsafe_allow_html=True)
     
-    # Input area with form with better column proportions
+    # Input area with fully integrated footer at the bottom
     st.markdown('<div class="input-area">', unsafe_allow_html=True)
 
+    # Using a form to handle Enter key press
     with st.form(key="message_form", clear_on_submit=True):
-        col1, col2 = st.columns([20, 1])
+        col1, col2 = st.columns([7, 1])
         
         with col1:
             st.markdown('<div class="input-container">', unsafe_allow_html=True)
-            # Text input with clearer hint
+            # Text input
             user_input = st.text_input(
                 "Message",
                 key="user_input",
@@ -949,68 +768,36 @@ def main():
             st.markdown('</div>', unsafe_allow_html=True)
         
         with col2:
-            # Send button with upward arrow
-            submitted = st.form_submit_button("", type="primary", help="Send message")
+            # Add some vertical spacing to align the button
+            st.markdown('<div style="height: 5px;"></div>', unsafe_allow_html=True)
+            # Create a visible submit button with a send icon
+            submitted = st.form_submit_button("↑", type="primary", help="Send message")
         
-    st.markdown('</div>', unsafe_allow_html=True)  # Close input-area div
-
+        # Footer info fully integrated with chat input - no separate footer
+        st.markdown("""
+        <div class="footer-info">
+            © 2025 Nandesh Kalashetti | AI Assistant
+        </div>
+        """, unsafe_allow_html=True)
+    
     # Handle form submission
     if submitted and user_input and user_input.strip():
-        # Add user message to chat
-        add_message("user", user_input)
-        
-        # Add to sidebar chat history
+        # Add to chat history
         add_to_chat_history(user_input)
         
-        # Get and display response
-        response_data = get_response(user_input)
+        # Add user message to chat
+        st.session_state.messages.append({"role": "user", "content": user_input})
         
-        # Add assistant response to chat with pattern information if applicable
-        add_message(
-            "assistant", 
-            response_data["response"], 
-            response_data.get("matched_pattern") if response_data.get("is_pattern_match", False) else None
-        )
+        # Get bot response
+        response = find_response(user_input)
+        
+        # Add bot response to chat
+        st.session_state.messages.append({"role": "assistant", "content": response})
         
         # Rerun to update the UI
         st.rerun()
     
     st.markdown('</div>', unsafe_allow_html=True)  # Close chat-interface
-
-# Improved method to check if a message has an emoji
-def has_emoji(message):
-    content = message.get("content", "")
-    if not content:
-        return False
-    
-    # Check for common emoji patterns (both Unicode and text-based)
-    emoji_pattern = re.compile(
-        "["
-        "\U0001F600-\U0001F64F"  # emoticons
-        "\U0001F300-\U0001F5FF"  # symbols & pictographs
-        "\U0001F680-\U0001F6FF"  # transport & map symbols
-        "\U0001F700-\U0001F77F"  # alchemical symbols
-        "\U0001F780-\U0001F7FF"  # Geometric Shapes
-        "\U0001F800-\U0001F8FF"  # Supplemental Arrows-C
-        "\U0001F900-\U0001F9FF"  # Supplemental Symbols and Pictographs
-        "\U0001FA00-\U0001FA6F"  # Chess Symbols
-        "\U0001FA70-\U0001FAFF"  # Symbols and Pictographs Extended-A
-        "\U00002702-\U000027B0"  # Dingbats
-        "\U000024C2-\U0001F251" 
-        "]+"
-    )
-    
-    # Check for Unicode emojis
-    if emoji_pattern.search(content):
-        return True
-    
-    # Check for text-based emojis
-    text_emojis = [':)', ':(', ':D', ':P', ':/', ':|', ';)', '<3', 'XD', '=)']
-    for emoji in text_emojis:
-        if emoji in content:
-            return True
-            
-    return False
 
 if __name__ == "__main__":
     main()
