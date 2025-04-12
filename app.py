@@ -773,9 +773,6 @@ def main():
         </div>
         """, unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
-    
-    # Main content - rule-based AI assistant
-    st.markdown('<div class="chat-interface">', unsafe_allow_html=True)
 
     # Display welcome message if no messages yet - focused on rule-based functionality
     if not st.session_state.messages:
@@ -809,9 +806,6 @@ def main():
     </div>
     """, unsafe_allow_html=True)
 
-    # Messages container
-    st.markdown('<div class="messages-container">', unsafe_allow_html=True)
-    
     # Display chat messages with pattern indicators for rule-based responses
     for message in st.session_state.messages:
         if message["role"] == "user":
