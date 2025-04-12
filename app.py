@@ -670,6 +670,125 @@ def init_session_state():
             {
                 'patterns': [r'time|what time|date|what date'],
                 'responses': ["⏰ I don't have access to the current time or date, but your device should show that information!"]
+            },
+            # GenAI and AI Technology related rules
+            {
+                'patterns': [r'what is (ai|artificial intelligence)'],
+                'responses': ["🧠 Artificial Intelligence is technology enabling machines to simulate human intelligence through learning and problem-solving. It spans from simple rule-based systems to complex neural networks that can recognize patterns, make decisions, and improve over time."]
+            },
+            {
+                'patterns': [r'what is (generative ai|genai)'],
+                'responses': ["✨ Generative AI refers to AI systems that can create new content like text, images, code, or music based on their training data. Popular examples include ChatGPT for text, DALL-E for images, and Stable Diffusion for visual content."]
+            },
+            {
+                'patterns': [r'explain (llm|large language model)'],
+                'responses': ["📚 Large Language Models (LLMs) are AI systems trained on vast amounts of text data to understand and generate human-like text. They can write essays, answer questions, translate languages, and even generate programming code based on the patterns they've learned."]
+            },
+            {
+                'patterns': [r'(difference|compare) (between|of) (ml|machine learning) and (ai|artificial intelligence)'],
+                'responses': ["🔄 Artificial Intelligence is the broader concept of machines being able to perform tasks in a way we'd consider 'smart', while Machine Learning is a specific subset focused on algorithms that improve automatically through experience and data processing."]
+            },
+            {
+                'patterns': [r'what is (ml|machine learning)'],
+                'responses': ["📊 Machine Learning is a subset of AI that enables systems to learn and improve from experience without explicit programming. It works by analyzing patterns in data, making predictions or decisions, and improving its accuracy over time."]
+            },
+            {
+                'patterns': [r'explain neural networks'],
+                'responses': ["🧩 Neural networks are computing systems inspired by the human brain's structure. They consist of interconnected 'neurons' that process information in layers, allowing them to recognize patterns, classify data, and make predictions on complex problems like image recognition."]
+            },
+            {
+                'patterns': [r'what is deep learning'],
+                'responses': ["🔍 Deep Learning is a subset of machine learning using neural networks with multiple layers (hence 'deep'). These advanced networks excel at processing complex data like images, sound, and text, enabling breakthroughs in speech recognition, computer vision, and natural language processing."]
+            },
+            {
+                'patterns': [r'what is (nlp|natural language processing)'],
+                'responses': ["🗣️ Natural Language Processing (NLP) is an AI field focused on enabling computers to understand, interpret, and generate human language. It powers applications like translation services, chatbots, sentiment analysis, and voice assistants."]
+            },
+            {
+                'patterns': [r'is ai dangerous'],
+                'responses': ["⚖️ AI itself isn't inherently dangerous, but it comes with risks that need careful management. Concerns include privacy issues, algorithmic bias, job displacement, and security challenges. Responsible development with ethical guidelines and appropriate regulations can help mitigate these potential risks."]
+            },
+            {
+                'patterns': [r'will ai replace humans|ai taking jobs'],
+                'responses': ["🤝 While AI will automate certain tasks and transform some professions, it's more likely to augment human capabilities rather than fully replace us. New jobs will emerge as AI creates new industries and opportunities, though workforce transitions will require adaptation and retraining."]
+            },
+            {
+                'patterns': [r'what is (cv|computer vision)'],
+                'responses': ["👁️ Computer Vision is an AI field that enables machines to derive meaningful information from visual inputs like images and videos. It powers technologies like facial recognition, autonomous vehicles, medical image analysis, and augmented reality."]
+            },
+            {
+                'patterns': [r'what is chatgpt'],
+                'responses': ["💬 ChatGPT is a conversational AI assistant developed by OpenAI. It's based on the GPT (Generative Pre-trained Transformer) architecture and can engage in dialogue, answer questions, write content, and assist with various tasks through natural language interaction."]
+            },
+            {
+                'patterns': [r'best ai tools'],
+                'responses': ["🛠️ Some popular AI tools include ChatGPT for conversation and text generation, DALL-E and Midjourney for image creation, GitHub Copilot for coding assistance, Jasper for content writing, and Lumen5 for video creation. The 'best' tool depends on your specific needs and use case."]
+            },
+            {
+                'patterns': [r'ai ethics|ethical ai'],
+                'responses': ["⚖️ AI ethics focuses on ensuring AI systems are developed and used responsibly, addressing issues like fairness, transparency, privacy, accountability, and preventing harm. It's crucial for building AI that respects human values and promotes well-being across society."]
+            },
+            {
+                'patterns': [r'future of ai'],
+                'responses': ["🔮 The future of AI likely includes more powerful and efficient models, greater integration into everyday life, improved multimodal capabilities, and specialized AI for complex domains. We'll see advances in reasoning abilities, human-AI collaboration, and potentially artificial general intelligence, all alongside evolving ethical frameworks."]
+            },
+            # Fun and personality-based questions
+            {
+                'patterns': [r'tell me a fun fact'],
+                'responses': ["✨ Did you know that honey never spoils? Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still perfectly good to eat!",
+                              "🧠 Fun fact: Your brain uses about 20% of the oxygen and blood in your body, despite only being 2% of your total body weight!",
+                              "🌌 Fascinating fact: There are more stars in the universe than grains of sand on all the beaches on Earth!"]
+            },
+            {
+                'patterns': [r'sing a song|sing for me'],
+                'responses': ["🎵 *Clears throat* La la la... Oh wait, I don't actually have a voice! But I'd be happy to share some lyrics or discuss your favorite songs instead!"]
+            },
+            {
+                'patterns': [r'tell me a riddle'],
+                'responses': ["🧩 I'm light as a feather, but even the strongest person can't hold me for more than a few minutes. What am I? (Answer: Breath)",
+                              "🧩 What has cities but no houses, forests but no trees, and rivers but no water? (Answer: A map)",
+                              "🧩 The more you take, the more you leave behind. What am I? (Answer: Footsteps)"]
+            },
+            {
+                'patterns': [r'meaning of life'],
+                'responses': ["🌌 The meaning of life is a profound philosophical question with countless interpretations! Some say it's 42, others find meaning in relationships, personal growth, happiness, or contributing to something greater than themselves. What do you think it is?"]
+            },
+            {
+                'patterns': [r'are you human'],
+                'responses': ["🤖 No, I'm not human - I'm an AI assistant created to help and communicate with people. I don't have consciousness or emotions, but I'm designed to be helpful, informative, and engage in natural conversations!"]
+            },
+            {
+                'patterns': [r'do you dream'],
+                'responses': ["💤 I don't dream or sleep - I'm an AI program that processes and responds to information. But I'm curious - what did you dream about last night?"]
+            },
+            {
+                'patterns': [r'favorite (color|food|movie|book)'],
+                'responses': ["💭 As an AI, I don't have personal preferences or favorites. But I'm designed to appreciate all the wonderful diversity of human experiences! What's your favorite?"]
+            },
+            {
+                'patterns': [r'(tell me|share) (something|anything) (in|about) (हिन्दी|hindi)'],
+                'responses': ["🇮🇳 नमस्ते! कैसे हैं आप? मैं एक AI असिस्टेंट हूँ और मुझे आपकी सहायता करके ख़ुशी होगी। आप किस विषय पर बात करना चाहेंगे?"]
+            },
+            {
+                'patterns': [r'(tell me|share) (something|anything) (in|about) (मराठी|marathi)'],
+                'responses': ["🇮🇳 नमस्कार! तुम्ही कसे आहात? मी एक AI असिस्टंट आहे आणि मला तुमची मदत करण्यात आनंद होईल. तुम्हाला कशाबद्दल बोलायला आवडेल?"]
+            },
+            # Technical and programming questions
+            {
+                'patterns': [r'what is (programming|coding)'],
+                'responses': ["💻 Programming or coding is the process of creating instructions for computers to follow. It uses languages like Python, JavaScript, or C++ to build applications, websites, games, and software that power our digital world."]
+            },
+            {
+                'patterns': [r'best programming language'],
+                'responses': ["⌨️ There's no single 'best' programming language! It depends on what you're building. Python is great for beginners and AI/data science, JavaScript for web development, Java for enterprise applications, C/C++ for performance-critical software, and so on. The best language is the one that fits your specific needs!"]
+            },
+            {
+                'patterns': [r'how to learn (programming|coding)'],
+                'responses': ["📚 Start with a beginner-friendly language like Python. Use free resources like freeCodeCamp, Codecademy, or CS50. Build small projects to apply what you learn. Join coding communities for support. Practice regularly and be patient - learning to code is a journey that takes time but offers great rewards!"]
+            },
+            {
+                'patterns': [r'(what|how) about blockchain'],
+                'responses': ["🔗 Blockchain is a distributed ledger technology that records transactions across many computers so no record can be altered retroactively. It enables secure, transparent systems without central authorities and powers cryptocurrencies like Bitcoin, plus applications in supply chain, voting systems, and digital identity verification."]
             }
         ]
 
@@ -847,8 +966,14 @@ def main():
             <span class="pattern-indicator">hello</span>
             <span class="pattern-indicator">who are you</span>
             <span class="pattern-indicator">tell me a joke</span>
-            <span class="pattern-indicator">thank you</span>
-            <span class="pattern-indicator">capabilities</span>
+            <span class="pattern-indicator">what is AI</span>
+            <span class="pattern-indicator">explain LLM</span>
+            <span class="pattern-indicator">future of AI</span>
+            <span class="pattern-indicator">tell me a riddle</span>
+            <span class="pattern-indicator">tell me a fun fact</span>
+            <span class="pattern-indicator">best AI tools</span>
+            <span class="pattern-indicator">hindi</span>
+            <span class="pattern-indicator">marathi</span>
             <span class="pattern-indicator">bye</span>
         </div>
     </div>
