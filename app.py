@@ -68,18 +68,25 @@ def load_css():
     /* Message styles */
     .message {
         padding: 15px 20px;
-        margin-bottom: 15px;
-        border-radius: 15px;
+        margin-bottom: 20px;
+        border-radius: 18px;
         max-width: 80%;
         animation: fadeIn 0.3s ease-out;
         word-wrap: break-word;
         line-height: 1.5;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         position: relative;
+        transform-origin: center;
+        transition: all 0.2s ease;
+    }
+    
+    .message:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
     }
     
     .user-message {
-        background: linear-gradient(135deg, #3b82f6, #1e40af);
+        background: linear-gradient(135deg, #4f46e5, #2563eb);
         color: white;
         align-self: flex-end;
         border-radius: 18px 18px 0 18px;
@@ -88,85 +95,96 @@ def load_css():
     
     .bot-message {
         background-color: #1e293b;
-        color: #f1f5f9;
+        color: #f8fafc;
         align-self: flex-start;
         border-radius: 18px 18px 18px 0;
-        border-left: 3px solid #3b82f6;
+        border-left: 3px solid #4f46e5;
         margin-left: 15px;
     }
     
-    /* Message avatars */
+    /* Message avatars - more elegant and subtle */
     .user-message::before {
         content: "";
         position: absolute;
-        bottom: -10px;
-        right: -15px;
-        width: 35px;
-        height: 35px;
+        bottom: -8px;
+        right: -12px;
+        width: 30px;
+        height: 30px;
         background-image: url('https://img.icons8.com/color/96/000000/user-male-circle--v1.png');
         background-size: cover;
         border-radius: 50%;
-        border: 2px solid #1d4ed8;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        border: 2px solid #4f46e5;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
     
     .bot-message::before {
         content: "";
         position: absolute;
-        bottom: -10px;
-        left: -15px;
-        width: 35px;
-        height: 35px;
+        bottom: -8px;
+        left: -12px;
+        width: 30px;
+        height: 30px;
         background-image: url('https://img.icons8.com/fluency/96/000000/chatbot.png');
         background-size: cover;
         border-radius: 50%;
-        border: 2px solid #3b82f6;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        border: 2px solid #4f46e5;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
     
-    /* Input area - fixed to bottom */
+    /* Input area - sleeker with frosted glass effect */
     .input-area {
         position: fixed;
         bottom: 0;
         left: 0;
         right: 0;
         padding: 15px 15px 10px 15px;
-        background: linear-gradient(to top, #0e1525, rgba(14, 21, 37, 0.95));
+        background: rgba(14, 21, 37, 0.8);
         z-index: 100;
-        border-top: 1px solid rgba(59, 130, 246, 0.2);
-        backdrop-filter: blur(8px);
+        border-top: 1px solid rgba(79, 70, 229, 0.2);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
     }
     
-    /* Form styling improvements */
-    form[data-testid="stForm"] {
-        background: transparent !important;
-        border: none !important;
-        padding: 0 !important;
-        margin: 0 !important;
-    }
-    
+    /* Input container with pulsing border effect */
     .input-container {
         display: flex;
         align-items: center;
-        background-color: #1e293b;
+        background-color: rgba(30, 41, 59, 0.8);
         border-radius: 25px;
         padding: 8px 8px 8px 20px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         margin: 0 auto;
         width: 100%;
         max-width: 800px;
         height: 55px;
         transition: all 0.3s ease;
-        border: 1px solid rgba(59, 130, 246, 0.3);
+        border: 1px solid rgba(79, 70, 229, 0.3);
+        position: relative;
+        overflow: hidden;
     }
     
     .input-container:focus-within {
-        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
-        border: 1px solid rgba(59, 130, 246, 0.6);
+        box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4);
+        border: 1px solid rgba(79, 70, 229, 0.6);
         transform: translateY(-3px);
     }
     
-    /* Fix for Streamlit inputs */
+    .input-container:focus-within::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        border-radius: 26px;
+        background: linear-gradient(135deg, #4f46e5, #8b5cf6, #4f46e5);
+        background-size: 400% 400%;
+        z-index: -1;
+        animation: gradient 3s ease infinite;
+        opacity: 0.6;
+    }
+    
+    /* Fix for Streamlit inputs - restoring required styles */
     .input-container .stTextInput {
         flex-grow: 1;
     }
@@ -208,27 +226,47 @@ def load_css():
         margin-bottom: 0 !important;
     }
     
-    /* Send button improvements */
+    /* Send button with nicer hover effect */
     button[kind="primary"] {
-        background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
+        background: linear-gradient(135deg, #4f46e5, #3730a3) !important;
         color: white !important;
         border: none !important;
         border-radius: 50% !important;
-        width: 40px !important;
-        height: 40px !important;
+        width: 42px !important;
+        height: 42px !important;
         padding: 10px !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
         cursor: pointer !important;
         transition: all 0.3s ease !important;
-        box-shadow: 0 4px 12px rgba(29, 78, 216, 0.4) !important;
+        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4) !important;
         min-width: unset !important;
+        position: relative;
+        overflow: hidden;
     }
     
     button[kind="primary"]:hover {
-        transform: scale(1.1) !important;
-        box-shadow: 0 6px 18px rgba(29, 78, 216, 0.5) !important;
+        transform: scale(1.08) !important;
+        box-shadow: 0 6px 18px rgba(79, 70, 229, 0.5) !important;
+    }
+    
+    button[kind="primary"]::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 5px;
+        height: 5px;
+        background: rgba(255, 255, 255, 0.8);
+        opacity: 0;
+        border-radius: 100%;
+        transform: scale(1, 1) translate(-50%);
+        transform-origin: 50% 50%;
+    }
+    
+    button[kind="primary"]:hover::after {
+        animation: ripple 1s ease-out;
     }
     
     .stButton button p {
@@ -242,7 +280,73 @@ def load_css():
         color: white;
     }
     
-    /* Welcome container - made simpler without title */
+    @keyframes ripple {
+        0% {
+            transform: scale(0, 0);
+            opacity: 0.5;
+        }
+        100% {
+            transform: scale(30, 30);
+            opacity: 0;
+        }
+    }
+    
+    /* Pattern indicator for rule-based responses */
+    .pattern-indicator {
+        display: inline-block;
+        background-color: rgba(79, 70, 229, 0.2);
+        color: #a5b4fc;
+        border-radius: 12px;
+        padding: 2px 8px;
+        font-size: 11px;
+        margin-right: 5px;
+        border: 1px solid rgba(79, 70, 229, 0.3);
+        transition: all 0.2s ease;
+        cursor: pointer;
+    }
+    
+    .pattern-indicator:hover {
+        background-color: rgba(79, 70, 229, 0.3);
+        transform: translateY(-1px);
+    }
+    
+    /* Welcome banner styling */
+    .welcome-banner {
+        text-align: center;
+        margin: 20px auto 30px;
+        max-width: 800px;
+        animation: fadeIn 0.5s ease-out;
+    }
+    
+    .welcome-banner h1 {
+        color: #f8fafc;
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        background: linear-gradient(135deg, #4f46e5, #8b5cf6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    
+    .welcome-banner p {
+        color: #94a3b8;
+        font-size: 16px;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    /* Pattern examples section */
+    .patterns-section {
+        background-color: rgba(30, 41, 59, 0.5);
+        border-radius: 12px;
+        padding: 15px 20px;
+        margin: 0 auto 30px;
+        max-width: 800px;
+        border: 1px solid rgba(79, 70, 229, 0.2);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Welcome container with floating animation */
     .welcome-container {
         text-align: center;
         padding: 40px 20px;
@@ -255,64 +359,98 @@ def load_css():
         margin-top: -20px;
     }
     
-    /* Sidebar styling */
-    .sidebar .stMarkdown {
-        color: #f8fafc !important;
+    .welcome-container img {
+        animation: float 6s ease-in-out infinite;
     }
     
-    .sidebar-content {
-        background-color: #1e293b;
-        border-radius: 12px;
-        padding: 20px;
-        margin-bottom: 20px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Chat history in sidebar */
-    .history-item {
-        background-color: #334155;
-        border-radius: 8px;
-        padding: 10px 15px;
-        margin: 8px 0;
-        font-size: 13px;
-        color: #e2e8f0;
-        cursor: pointer;
-        transition: all 0.2s;
-        border-left: 3px solid transparent;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+    @keyframes float {
+        0% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+        100% {
+            transform: translateY(0px);
+        }
     }
     
-    .history-item:hover {
-        background-color: #3b4a63;
-        border-left-color: #3b82f6;
-    }
-    
-    .history-container {
-        max-height: 300px;
-        overflow-y: auto;
-        padding-right: 5px;
-        margin-top: 10px;
-    }
-    
-    /* Feature cards */
+    /* Sidebar styling with subtle hover effects */
     .feature-card {
         background-color: #334155;
-        border-radius: 10px;
+        border-radius: 12px;
         padding: 15px;
         margin-bottom: 12px;
         transition: all 0.3s ease;
+        border-left: 3px solid transparent;
     }
     
     .feature-card:hover {
         transform: translateY(-3px);
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        border-left: 3px solid #4f46e5;
     }
     
-    /* Animations */
+    /* Tech badges with hover effect */
+    .tech-badge {
+        display: inline-block;
+        background-color: #334155;
+        color: #94a3b8;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        margin: 0 5px 5px 0;
+        transition: all 0.2s ease;
+    }
+    
+    .tech-badge:hover {
+        background-color: #4f46e5;
+        color: white;
+        transform: translateY(-2px);
+    }
+    
+    /* Connect links with pulse animation */
+    .connect-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        background-color: #334155;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+    
+    .connect-link:hover {
+        transform: translateY(-3px);
+        background-color: #4f46e5;
+    }
+    
+    .connect-link:hover::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 2px solid #4f46e5;
+        animation: pulse 1.5s infinite;
+    }
+    
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(1.5);
+            opacity: 0;
+        }
+    }
+    
+    /* Additional Animations */
     @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
+        from { opacity: 0; transform: translateY(15px); }
         to { opacity: 1; transform: translateY(0); }
     }
     
@@ -657,23 +795,23 @@ def main():
         st.markdown("<h3 style='color: #f8fafc; font-size: 15px; margin: 20px 0 5px;'>Features</h3>", unsafe_allow_html=True)
         st.markdown("""
         <div class="feature-card">
-            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">🧠 Rule-Based Intelligence</h4>
-            <p style="color: #94a3b8; font-size: 12px;">Pattern matching for quick responses</p>
+            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">🧠 Pattern Matching</h4>
+            <p style="color: #94a3b8; font-size: 12px;">Rule-based responses to predefined questions</p>
         </div>
         
         <div class="feature-card">
-            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">🤖 AI Integration</h4>
-            <p style="color: #94a3b8; font-size: 12px;">Powered by Groq LLM API</p>
+            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">⚙️ Regular Expressions</h4>
+            <p style="color: #94a3b8; font-size: 12px;">Advanced pattern recognition</p>
         </div>
         
         <div class="feature-card">
-            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">💬 Natural Conversations</h4>
-            <p style="color: #94a3b8; font-size: 12px;">Context-aware dialogue</p>
+            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">🤖 AI Fallback</h4>
+            <p style="color: #94a3b8; font-size: 12px;">For complex questions outside patterns</p>
         </div>
         
         <div class="feature-card">
-            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">📱 Responsive Design</h4>
-            <p style="color: #94a3b8; font-size: 12px;">Works on all devices</p>
+            <h4 style="color: #f8fafc; font-size: 14px; margin-bottom: 5px;">📊 Unit Testing</h4>
+            <p style="color: #94a3b8; font-size: 12px;">Ensuring response reliability</p>
         </div>
         """, unsafe_allow_html=True)
         
@@ -684,37 +822,62 @@ def main():
             <span class="tech-badge">Python</span>
             <span class="tech-badge">Streamlit</span>
             <span class="tech-badge">Groq API</span>
-            <span class="tech-badge">LLaMA 3</span>
-            <span class="tech-badge">CSS3</span>
+            <span class="tech-badge">PyTest</span>
+            <span class="tech-badge">Git</span>
         </div>
         """, unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
     
-    # Main content - simplified structure
+    # Main content - rule-based AI assistant
     st.markdown('<div class="chat-interface">', unsafe_allow_html=True)
-    
-    # Messages container - no header or title anymore
+
+    # Simple welcome banner highlighting rule-based functionality
+    st.markdown("""
+    <div class="welcome-banner">
+        <h1>Rule-Based AI Assistant</h1>
+        <p>Pattern matching chatbot with predefined responses and AI capabilities for complex queries</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Add pattern examples section
+    st.markdown("""
+    <div class="patterns-section">
+        <div style="color: #e2e8f0; font-size: 13px; margin-bottom: 8px;">Try these pattern examples:</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <span class="pattern-indicator">hello</span>
+            <span class="pattern-indicator">who are you</span>
+            <span class="pattern-indicator">tell me a joke</span>
+            <span class="pattern-indicator">thank you</span>
+            <span class="pattern-indicator">capabilities</span>
+            <span class="pattern-indicator">bye</span>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Messages container
     st.markdown('<div class="messages-container">', unsafe_allow_html=True)
-    
-    # Display welcome message if no messages yet - simplified
+
+    # Display welcome message if no messages yet - focused on rule-based functionality
     if not st.session_state.messages:
         st.markdown("""
         <div class="welcome-container">
             <img src="https://img.icons8.com/fluency/96/000000/chatbot.png" style="width: 80px; margin-bottom: 15px;" alt="Chatbot Icon">
-            <p style="color: #94a3b8; font-size: 16px; margin-bottom: 5px;">Start chatting with your AI Assistant</p>
-            <p style="color: #64748b; font-size: 14px;">Type a message below to begin</p>
+            <p style="color: #f8fafc; font-size: 16px; margin-bottom: 8px;">Rule-Based AI Assistant Ready!</p>
+            <p style="color: #94a3b8; font-size: 14px;">Ask me predefined questions or try more complex queries</p>
         </div>
         """, unsafe_allow_html=True)
     
-    # Display chat messages with emojis and better formatting
+    # Display chat messages with pattern indicators for rule-based responses
     for message in st.session_state.messages:
         if message["role"] == "user":
             st.markdown(f'<div class="message user-message">{message["content"]}</div>', unsafe_allow_html=True)
         else:
-            # Add emojis to make responses more engaging
-            content = message["content"]
-            # Only add emoji if not already present
-            if not any(char in content[:2] for char in ['😊', '👋', '🤖', '💡', '🚀', '📊', '⚠️', '🤔', '👍', '✨', '🙏', '😄']):
+            # Get content
+            content = message.get("content", "")
+            
+            # Only add emoji if content exists and doesn't already have an emoji
+            emoji_list = ['😊', '👋', '🤖', '💡', '🚀', '📊', '⚠️', '🤔', '👍', '✨', '🙏', '😄']
+            if content and not any(emoji in content[:4] for emoji in emoji_list):
                 # Add relevant emojis based on content
                 if "hello" in content.lower() or "hi" in content.lower():
                     content = "👋 " + content
@@ -744,21 +907,29 @@ def main():
                     content = "✨ " + content
                 else:
                     content = "💡 " + content
+            
+            # Check if this was a rule-based match and add the pattern indicator
+            pattern_indicator = ""
+            if message.get("matched_pattern", None):
+                pattern_indicator = f'<div style="margin-top: 8px; font-size: 12px; color: #a5b4fc;"><span class="pattern-indicator">rule</span> Matched pattern: <code>{message["matched_pattern"]}</code></div>'
+            
+            # Add AI indicator for non-rule responses
+            elif "is_pattern_match" in message and not message["is_pattern_match"]:
+                pattern_indicator = '<div style="margin-top: 8px; font-size: 12px; color: #a5b4fc;"><span class="pattern-indicator">ai</span> No rule pattern matched - using AI response</div>'
                 
-            st.markdown(f'<div class="message bot-message">{content}</div>', unsafe_allow_html=True)
+            st.markdown(f'<div class="message bot-message">{content}{pattern_indicator}</div>', unsafe_allow_html=True)
     
     st.markdown('</div>', unsafe_allow_html=True)
     
-    # Input area with fully integrated footer at the bottom
+    # Input area with form with better column proportions
     st.markdown('<div class="input-area">', unsafe_allow_html=True)
 
-    # Using a form to handle Enter key press
     with st.form(key="message_form", clear_on_submit=True):
-        col1, col2 = st.columns([7, 1])
+        col1, col2 = st.columns([20, 1])
         
         with col1:
             st.markdown('<div class="input-container">', unsafe_allow_html=True)
-            # Text input
+            # Text input with clearer hint
             user_input = st.text_input(
                 "Message",
                 key="user_input",
@@ -768,31 +939,45 @@ def main():
             st.markdown('</div>', unsafe_allow_html=True)
         
         with col2:
-            # Add some vertical spacing to align the button
-            st.markdown('<div style="height: 5px;"></div>', unsafe_allow_html=True)
-            # Create a visible submit button with a send icon
-            submitted = st.form_submit_button("↑", type="primary", help="Send message")
+            # Send button with upward arrow
+            submitted = st.form_submit_button("", type="primary", help="Send message")
         
-        # Footer info fully integrated with chat input - no separate footer
-        st.markdown("""
-        <div class="footer-info">
-            © 2025 Nandesh Kalashetti | AI Assistant
-        </div>
-        """, unsafe_allow_html=True)
-    
+    st.markdown('</div>', unsafe_allow_html=True)  # Close input-area div
+
     # Handle form submission
     if submitted and user_input and user_input.strip():
-        # Add to chat history
-        add_to_chat_history(user_input)
-        
         # Add user message to chat
         st.session_state.messages.append({"role": "user", "content": user_input})
         
-        # Get bot response
-        response = find_response(user_input)
+        # Add to sidebar chat history
+        add_to_chat_history(user_input)
         
-        # Add bot response to chat
-        st.session_state.messages.append({"role": "assistant", "content": response})
+        # Get and display response
+        is_pattern_match = False
+        matched_pattern = None
+        
+        # Try to find a pattern match first
+        for rule in st.session_state.rules:
+            for pattern in rule['patterns']:
+                if re.search(pattern, user_input.lower().strip()):
+                    response = random.choice(rule['responses'])
+                    is_pattern_match = True
+                    matched_pattern = pattern
+                    break
+            if is_pattern_match:
+                break
+        
+        # If no pattern match, use Groq API
+        if not is_pattern_match:
+            response = get_ai_response(user_input)
+        
+        # Add response with metadata about pattern matching
+        st.session_state.messages.append({
+            "role": "assistant", 
+            "content": response,
+            "is_pattern_match": is_pattern_match,
+            "matched_pattern": matched_pattern
+        })
         
         # Rerun to update the UI
         st.rerun()
