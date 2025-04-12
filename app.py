@@ -42,15 +42,15 @@ def load_css():
     }
     
     /* Chat interface */
-    .chat-interface {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        padding: 0;
-        background-color: transparent;
-        position: relative;
-        padding-bottom: 90px; /* Space for input area */
-    }
+    # .chat-interface {
+    #     min-height: 100vh;
+    #     display: flex;
+    #     flex-direction: column;
+    #     padding: 0;
+    #     background-color: transparent;
+    #     position: relative;
+    #     padding-bottom: 90px; /* Space for input area */
+    # }
     
     /* Messages container */
     .messages-container {
