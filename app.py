@@ -146,45 +146,45 @@ def load_css():
         transition: all 0.3s ease;
     }
     
-    /* Input container with new design matching math chatbot */
-    .input-container {
-        display: flex;
-        align-items: center;
-        background-color: rgba(20, 22, 30, 0.7);
-        border-radius: 50px;
-        padding: 8px 15px 8px 8px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        margin: 0 auto;
-        width: 100%;
-        max-width: 1200px;
-        height: 54px;
-        transition: all 0.3s ease;
-        border: 1px solid rgba(45, 55, 72, 0.5);
-        position: relative;
-        overflow: hidden;
-    }
+    # /* Input container with new design matching math chatbot */
+    # .input-container {
+    #     display: flex;
+    #     align-items: center;
+    #     background-color: rgba(20, 22, 30, 0.7);
+    #     border-radius: 50px;
+    #     padding: 8px 15px 8px 8px;
+    #     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    #     margin: 0 auto;
+    #     width: 100%;
+    #     max-width: 1200px;
+    #     height: 54px;
+    #     transition: all 0.3s ease;
+    #     border: 1px solid rgba(45, 55, 72, 0.5);
+    #     position: relative;
+    #     overflow: hidden;
+    # }
     
-    .input-container:focus-within {
-        box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
-        border: 1px solid rgba(99, 102, 241, 0.4);
-        transform: translateY(-2px);
-        background-color: rgba(22, 25, 37, 0.8);
-    }
+    # .input-container:focus-within {
+    #     box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+    #     border: 1px solid rgba(99, 102, 241, 0.4);
+    #     transform: translateY(-2px);
+    #     background-color: rgba(22, 25, 37, 0.8);
+    # }
     
-    .input-container:focus-within::before {
-        content: "";
-        position: absolute;
-        top: -2px;
-        left: -2px;
-        right: -2px;
-        bottom: -2px;
-        border-radius: 50px;
-        background: linear-gradient(90deg, #4f46e5, #8b5cf6, #4f46e5);
-        background-size: 200% 200%;
-        z-index: -1;
-        animation: gradient 3s ease infinite;
-        opacity: 0.4;
-    }
+    # .input-container:focus-within::before {
+    #     content: "";
+    #     position: absolute;
+    #     top: -2px;
+    #     left: -2px;
+    #     right: -2px;
+    #     bottom: -2px;
+    #     border-radius: 50px;
+    #     background: linear-gradient(90deg, #4f46e5, #8b5cf6, #4f46e5);
+    #     background-size: 200% 200%;
+    #     z-index: -1;
+    #     animation: gradient 3s ease infinite;
+    #     opacity: 0.4;
+    # }
 
     /* Fix for Streamlit inputs - restoring required styles */
     .input-container .stTextInput {
