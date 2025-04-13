@@ -937,7 +937,7 @@ def main():
         st.markdown('<div class="sidebar-content">', unsafe_allow_html=True)
         st.markdown("""
         <div class="logo-container">
-            <img src="https://nandeshkalashetti.netlify.app/img/person.jpg" alt="Nandesh Kalashetti">
+            <img src="Nandesh.PNG" alt="Nandesh Kalashetti">
             <h2 style="margin-top: 10px; color: #f8fafc; font-size: 18px;">Nandesh Kalashetti</h2>
             <p style="color: #94a3b8; font-size: 13px;">Full-Stack Developer</p>
         </div>
