@@ -146,21 +146,21 @@ def load_css():
     }
     
     /* Input container with pulsing border effect */
-    .input-container {
-        display: flex;
-        align-items: center;
-        background-color: rgba(30, 41, 59, 0.8);
-        border-radius: 25px;
-        padding: 8px 8px 8px 20px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        margin: 0 auto;
-        width: 100%;
-        max-width: 800px;
-        transition: all 0.3s ease;
-        border: 1px solid rgba(79, 70, 229, 0.3);
-        position: relative;
-        overflow: hidden;
-    }
+    # .input-container {
+    #     display: flex;
+    #     align-items: center;
+    #     background-color: rgba(30, 41, 59, 0.8);
+    #     border-radius: 25px;
+    #     padding: 8px 8px 8px 20px;
+    #     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    #     margin: 0 auto;
+    #     width: 100%;
+    #     max-width: 800px;
+    #     transition: all 0.3s ease;
+    #     border: 1px solid rgba(79, 70, 229, 0.3);
+    #     position: relative;
+    #     overflow: hidden;
+    # }
     
     .input-container:focus-within {
         box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4);
