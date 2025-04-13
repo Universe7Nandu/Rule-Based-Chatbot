@@ -36,7 +36,7 @@ def load_css():
     
     /* Base styling */
     body {
-        background-color: #0e1525;
+        background-color: black;
         color: #f8fafc;
         background-image: radial-gradient(circle at 50% 50%, #131c31 0%, #0e1525 100%);
     }
@@ -136,8 +136,8 @@ def load_css():
         position:absolute;
         bottom: 0;
         left: 0;
-        right: 0;
-        padding: 10px 20px 15px 20px;
+        # right: 0;
+        # padding: 10px 20px 15px 20px;
         background: rgba(14, 17, 23, 0.95);
         z-index: 100;
         border-top: 1px solid rgba(46, 52, 64, 0.3);
