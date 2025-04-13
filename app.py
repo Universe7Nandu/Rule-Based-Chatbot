@@ -6,6 +6,7 @@ import time
 import random
 from dotenv import load_dotenv
 from groq import Groq
+from PIL import Image
 
 # Set page config (must be first Streamlit command)
 st.set_page_config(
@@ -938,6 +939,9 @@ def main():
         st.markdown("""
         <div class="logo-container">
             <img src="Nandesh.png" alt="Nandesh Kalashetti">
+            image = Image.open("Nandesh.png")
+            st.image(image, width=150)
+
             <h2 style="margin-top: 10px; color: #f8fafc; font-size: 18px;">Nandesh Kalashetti</h2>
             <p style="color: #94a3b8; font-size: 13px;">Full-Stack Developer</p>
         </div>
