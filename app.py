@@ -1122,7 +1122,7 @@ def main():
         
         with col3:
             # Send button
-            submitted = st.form_submit_button("", type="primary", help="Send message")
+            submitted = st.form_submit_button("", type="primary", help="Send message",placeholder="Submit")
         
         with col1:
             st.markdown('<div class="input-container">', unsafe_allow_html=True)
@@ -1130,20 +1130,20 @@ def main():
             user_input = st.text_input(
                 "Message",
                 key="user_input",
-                placeholder="Type your math question or greeting here...",
+                placeholder="Type your questions or greeting here...",
                 label_visibility="collapsed"
             )
             st.markdown('</div>', unsafe_allow_html=True)
             
-        with col2:
-            # Tool buttons container
-            st.markdown("""
-            <div class="tools-container">
-                <button class="tool-button" title="Upload image">
-                    <img src="https://img.icons8.com/material-outlined/24/ffffff/camera--v1.png" alt="camera"/>
-                </button>
-            </div>
-            """, unsafe_allow_html=True)
+        #with col2:
+            # # Tool buttons container
+            # st.markdown("""
+            # <div class="tools-container">
+            #     <button class="tool-button" title="Upload image">
+            #         <img src="https://img.icons8.com/material-outlined/24/ffffff/camera--v1.png" alt="camera"/>
+            #     </button>
+            # </div>
+            # """, unsafe_allow_html=True)
         
         # Footer info
         st.markdown("""
