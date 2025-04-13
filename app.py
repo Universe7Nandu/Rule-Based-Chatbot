@@ -937,7 +937,7 @@ def main():
         st.markdown('<div class="sidebar-content">', unsafe_allow_html=True)
         st.markdown("""
         <div class="logo-container">
-            <img src="./Nandesh.PNG" alt="Nandesh Kalashetti">
+            <img src="Nandesh.png" alt="Nandesh Kalashetti">
             <h2 style="margin-top: 10px; color: #f8fafc; font-size: 18px;">Nandesh Kalashetti</h2>
             <p style="color: #94a3b8; font-size: 13px;">Full-Stack Developer</p>
         </div>
@@ -964,7 +964,7 @@ def main():
         
         # Chat history in sidebar
         if st.session_state.chat_history:
-            st.markdown("<h3 style='color: #f8fafc; font-size: 15px; margin: 20px 0 5px;'>Recent Chats</h3>", unsafe_allow_html=True)
+            st.markdown("<h2 style='color: #Pink; font-size: 18px; margin: 25px 0 2px; '>Recent Chats</h2>", unsafe_allow_html=True)
             st.markdown('<div class="history-container">', unsafe_allow_html=True)
             
             for i, (query, timestamp) in enumerate(st.session_state.chat_history):
