@@ -26,6 +26,7 @@ def load_css():
     st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
     
     * {
         font-family: 'Inter', sans-serif;
@@ -36,45 +37,44 @@ def load_css():
     
     /* Base styling */
     body {
-        background-color: #0e1525;
+        background-color: #0f172a;
         color: #f8fafc;
-        background-image: radial-gradient(circle at 50% 50%, #131c31 0%, #0e1525 100%);
+        background-image: radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 100%);
     }
     
     /* Chat interface */
-    # .chat-interface {
-    #     min-height: 100vh;
-    #     display: flex;
-    #     flex-direction: column;
-    #     padding: 0;
-    #     background-color: transparent;
-    #     position: relative;
-    #     padding-bottom: 90px; /* Space for input area */
-    # }
+    .chat-interface {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        padding: 0;
+        position: relative;
+    }
     
-    /* Messages container */
+    /* Messages container with smooth scroll */
     .messages-container {
         flex: 1;
         overflow-y: auto;
-        padding: 0px 20px 100px 20px;
+        padding: 10px 20px 130px 20px;
         display: flex;
         flex-direction: column;
-        gap: 15px;
+        gap: 20px;
         max-width: 1000px;
         margin: 0 auto;
         width: 100%;
+        scroll-behavior: smooth;
     }
     
-    /* Message styles */
+    /* Modern message styles */
     .message {
-        padding: 15px 20px;
-        margin-bottom: 20px;
-        border-radius: 18px;
-        max-width: 80%;
-        animation: fadeIn 0.3s ease-out;
+        padding: 16px 20px;
+        margin-bottom: 12px;
+        border-radius: 16px;
+        max-width: 85%;
+        animation: fadeInUp 0.3s ease-out;
         word-wrap: break-word;
-        line-height: 1.5;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        line-height: 1.6;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         position: relative;
         transform-origin: center;
         transition: all 0.2s ease;
@@ -82,111 +82,99 @@ def load_css():
     
     .message:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
     }
     
     .user-message {
-        background: linear-gradient(135deg, #4f46e5, #2563eb);
+        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
         color: white;
         align-self: flex-end;
-        border-radius: 18px 18px 0 18px;
-        margin-right: 15px;
+        border-radius: 16px 16px 4px 16px;
+        margin-right: 10px;
     }
     
     .bot-message {
         background-color: #1e293b;
         color: #f8fafc;
         align-self: flex-start;
-        border-radius: 18px 18px 18px 0;
-        border-left: 3px solid #4f46e5;
-        margin-left: 15px;
+        border-radius: 16px 16px 16px 4px;
+        border-left: 3px solid #3b82f6;
+        margin-left: 10px;
     }
     
-    /* Message avatars - more elegant and subtle */
+    /* Message avatars with better positioning */
     .user-message::before {
         content: "";
         position: absolute;
-        bottom: -8px;
-        right: -12px;
+        bottom: -10px;
+        right: -10px;
         width: 30px;
         height: 30px;
         background-image: url('https://img.icons8.com/color/96/000000/user-male-circle--v1.png');
         background-size: cover;
         border-radius: 50%;
-        border: 2px solid #4f46e5;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        border: 2px solid #3b82f6;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
     
     .bot-message::before {
         content: "";
         position: absolute;
-        bottom: -8px;
-        left: -12px;
+        bottom: -10px;
+        left: -10px;
         width: 30px;
         height: 30px;
         background-image: url('https://img.icons8.com/fluency/96/000000/chatbot.png');
         background-size: cover;
         border-radius: 50%;
-        border: 2px solid #4f46e5;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        border: 2px solid #3b82f6;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
     
-    /* Input area - sleeker with frosted glass effect */
-    # .input-area {
-    #     position:absolute;
-    #     bottom: 0;
-    #     left: 0;
-    #     right: 0;
-    #     padding: 10px 20px 15px 20px;
-    #     background: rgba(14, 17, 23, 0.95);
-    #     z-index: 100;
-    #     border-top: 1px solid rgba(46, 52, 64, 0.3);
-    #     backdrop-filter: blur(10px);
-    #     box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.25);
-    #     transition: all 0.3s ease;
-    # }
+    /* Fixed input area with glass effect */
+    .input-area {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 15px 20px 20px 20px;
+        background: rgba(15, 23, 42, 0.95);
+        z-index: 100;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(59, 130, 246, 0.2);
+        box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3);
+    }
     
-    # /* Input container with new design matching math chatbot */
-    # .input-container {
-    #     display: flex;
-    #     align-items: center;
-    #     background-color: rgba(20, 22, 30, 0.7);
-    #     border-radius: 50px;
-    #     padding: 8px 15px 8px 8px;
-    #     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    #     margin: 0 auto;
-    #     width: 100%;
-    #     max-width: 1200px;
-    #     height: 54px;
-    #     transition: all 0.3s ease;
-    #     border: 1px solid rgba(45, 55, 72, 0.5);
-    #     position: relative;
-    #     overflow: hidden;
-    # }
+    /* Form styling - cleaner look */
+    form[data-testid="stForm"] {
+        background-color: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
     
-    # .input-container:focus-within {
-    #     box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
-    #     border: 1px solid rgba(99, 102, 241, 0.4);
-    #     transform: translateY(-2px);
-    #     background-color: rgba(22, 25, 37, 0.8);
-    # }
+    /* Input container with animations */
+    .input-container {
+        display: flex;
+        align-items: center;
+        background-color: rgba(30, 41, 59, 0.7);
+        border-radius: 12px;
+        padding: 4px 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        margin: 0 auto;
+        max-width: 900px;
+        border: 1px solid rgba(59, 130, 246, 0.2);
+        transition: all 0.3s ease;
+    }
     
-    # .input-container:focus-within::before {
-    #     content: "";
-    #     position: absolute;
-    #     top: -2px;
-    #     left: -2px;
-    #     right: -2px;
-    #     bottom: -2px;
-    #     border-radius: 50px;
-    #     background: linear-gradient(90deg, #4f46e5, #8b5cf6, #4f46e5);
-    #     background-size: 200% 200%;
-    #     z-index: -1;
-    #     animation: gradient 3s ease infinite;
-    #     opacity: 0.4;
-    # }
-
-    /* Fix for Streamlit inputs - restoring required styles */
+    .input-container:focus-within {
+        box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+        border: 1px solid rgba(59, 130, 246, 0.6);
+        background-color: rgba(30, 41, 59, 0.9);
+    }
+    
+    /* Input field styling */
     .input-container .stTextInput {
         flex-grow: 1;
     }
@@ -200,255 +188,102 @@ def load_css():
         background-color: transparent !important;
         color: #f8fafc !important;
         border: none !important;
-        padding: 6px 15px !important;
+        padding: 12px 5px !important;
         font-size: 15px !important;
         width: 100% !important;
-        margin: 0 !important;
-        height: 38px !important;
-        font-family: 'Inter', sans-serif !important;
+        height: 44px !important;
     }
     
     .input-container .stTextInput > div > div > input::placeholder {
-        color: rgba(156, 163, 175, 0.7) !important;
+        color: rgba(148, 163, 184, 0.7) !important;
         font-style: normal !important;
     }
-
-    /* Send button with nicer hover effect */
+    
+    /* Modern submit button */
     button[kind="primary"] {
-        background: linear-gradient(135deg, #4f46e5, #6366f1) !important;
+        background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
         color: white !important;
         border: none !important;
-        border-radius: 50% !important;
-        width: 38px !important;
-        height: 38px !important;
-        padding: 0 !important;
-        margin: 0 8px 0 0 !important;
+        border-radius: 10px !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.5px !important;
+        padding: 0 20px !important;
+        margin: 0 !important;
+        height: 44px !important;
+        min-width: 100px !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
         cursor: pointer !important;
-        transition: all 0.2s ease !important;
-        box-shadow: 0 2px 10px rgba(79, 70, 229, 0.3) !important;
-        min-width: unset !important;
-        position: relative;
-        overflow: hidden;
+        transition: all 0.3s ease !important;
+        box-shadow: 0 4px 10px rgba(29, 78, 216, 0.3) !important;
     }
     
     button[kind="primary"]:hover {
-        transform: scale(1.08) !important;
-        background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
-        box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4) !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 15px rgba(29, 78, 216, 0.4) !important;
+        background: linear-gradient(135deg, #2563eb, #1e40af) !important;
     }
     
-    button[kind="primary"]::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 5px;
-        height: 5px;
-        background: rgba(255, 255, 255, 0.8);
-        opacity: 0;
-        border-radius: 100%;
-        transform: scale(1, 1) translate(-50%);
-        transform-origin: 50% 50%;
+    /* Sidebar styling - modern, clean look */
+    [data-testid="stSidebar"] {
+        background-color: #0f172a;
+        border-right: 1px solid rgba(59, 130, 246, 0.1);
     }
     
-    button[kind="primary"]:hover::after {
-        animation: ripple 1s ease-out;
+    .sidebar-content {
+        padding: 20px 15px;
     }
     
-    .stButton button p {
-        display: none;
-    }
-    
-    .stButton button::before {
-        content: "›";
-        font-size: 24px;
-        font-weight: 500;
-        color: white;
-        transform: rotate(-90deg);
-        display: inline-block;
-        line-height: 0;
-        margin-top: -2px;
-    }
-    
-    /* Tools container for buttons next to input */
-    .tools-container {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        margin-right: 5px;
-    }
-    
-    .tool-button {
-        background-color: rgba(55, 65, 81, 0.5);
-        border: none;
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
-    
-    .tool-button:hover {
-        background-color: rgba(79, 70, 229, 0.3);
-        transform: translateY(-2px);
-    }
-    
-    .tool-button img {
-        width: 16px;
-        height: 16px;
-        opacity: 0.9;
-    }
-    
-    /* Footer info styling */
-    .footer-info {
-        text-align: center;
-        color: #6b7280;
-        font-size: 11px;
-        margin-top: 8px;
-        opacity: 0.7;
-        letter-spacing: 0.3px;
-    }
-    
-    /* Pattern indicator for rule-based responses */
-    .pattern-indicator {
-        display: inline-block;
-        background-color: rgba(79, 70, 229, 0.2);
-        color: #a5b4fc;
-        border-radius: 12px;
-        padding: 2px 8px;
-        font-size: 11px;
-        margin-right: 5px;
-        border: 1px solid rgba(79, 70, 229, 0.3);
-        transition: all 0.2s ease;
-        cursor: pointer;
-    }
-    
-    .pattern-indicator:hover {
-        background-color: rgba(79, 70, 229, 0.3);
-        transform: translateY(-1px);
-    }
-    
-    /* Welcome banner styling */
-    .welcome-banner {
-        text-align: center;
-        margin: 20px auto 30px;
-        max-width: 800px;
-        animation: fadeIn 0.5s ease-out;
-    }
-    
-    .welcome-banner h1 {
-        color: #f8fafc;
-        font-size: 28px;
-        font-weight: 600;
-        margin-bottom: 10px;
-        background: linear-gradient(135deg, #4f46e5, #8b5cf6);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-    
-    .welcome-banner p {
-        color: #94a3b8;
-        font-size: 16px;
-        max-width: 600px;
-        margin: 0 auto;
-    }
-    
-    /* Pattern examples section */
-    .patterns-section {
-        background-color: rgba(30, 41, 59, 0.5);
-        border-radius: 12px;
-        padding: 15px 20px;
-        margin: 0 auto 30px;
-        max-width: 800px;
-        border: 1px solid rgba(79, 70, 229, 0.2);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
-    
-    /* Welcome container with floating animation */
-    .welcome-container {
-        text-align: center;
-        padding: 40px 20px;
-        color: #94a3b8;
+    /* Logo/profile container with subtle animation */
+    .logo-container {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        height: calc(100vh - 180px);
-        margin-top: -20px;
+        margin-bottom: 25px;
+        animation: fadeIn 1s ease-out;
     }
     
-    .welcome-container img {
-        animation: float 6s ease-in-out infinite;
-    }
-    
-    @keyframes float {
-        0% {
-            transform: translateY(0px);
-        }
-        50% {
-            transform: translateY(-10px);
-        }
-        100% {
-            transform: translateY(0px);
-        }
-    }
-    
-    /* Sidebar styling with subtle hover effects */
-    .feature-card {
-        background-color: #334155;
-        border-radius: 12px;
-        padding: 15px;
-        margin-bottom: 12px;
+    .logo-container img {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #3b82f6;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         transition: all 0.3s ease;
-        border-left: 3px solid transparent;
     }
     
-    .feature-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-        border-left: 3px solid #4f46e5;
+    .logo-container img:hover {
+        transform: scale(1.05);
+        border-color: #60a5fa;
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
     }
     
-    /* Tech badges with hover effect */
-    .tech-badge {
-        display: inline-block;
-        background-color: #334155;
-        color: #94a3b8;
-        padding: 5px 10px;
-        border-radius: 20px;
-        font-size: 12px;
-        margin: 0 5px 5px 0;
-        transition: all 0.2s ease;
+    /* Connect links with animations */
+    .connect-links {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin: 15px 0;
     }
     
-    .tech-badge:hover {
-        background-color: #4f46e5;
-        color: white;
-        transform: translateY(-2px);
-    }
-    
-    /* Connect links with pulse animation */
     .connect-link {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 36px;
-        height: 36px;
-        background-color: #334155;
+        width: 38px;
+        height: 38px;
+        background-color: #1e293b;
         border-radius: 50%;
         transition: all 0.3s ease;
         position: relative;
+        overflow: hidden;
     }
     
     .connect-link:hover {
         transform: translateY(-3px);
-        background-color: #4f46e5;
+        background-color: #3b82f6;
     }
     
     .connect-link:hover::after {
@@ -457,109 +292,170 @@ def load_css():
         width: 100%;
         height: 100%;
         border-radius: 50%;
-        border: 2px solid #4f46e5;
+        border: 2px solid #3b82f6;
         animation: pulse 1.5s infinite;
     }
     
-    @keyframes pulse {
-        0% {
-            transform: scale(1);
-            opacity: 1;
-        }
-        100% {
-            transform: scale(1.5);
-            opacity: 0;
-        }
+    /* Recent chats styling - modern and interactive */
+    .history-container {
+        max-height: 300px;
+        overflow-y: auto;
+        padding-right: 5px;
+        margin-bottom: 20px;
+        border-radius: 10px;
     }
     
-    /* Additional Animations */
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(15px); }
-        to { opacity: 1; transform: translateY(0); }
+    .history-item {
+        padding: 10px 15px;
+        margin-bottom: 8px;
+        background-color: #1e293b;
+        border-radius: 8px;
+        font-size: 13px;
+        color: #e2e8f0;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border-left: 3px solid transparent;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     
-    @keyframes gradient {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
+    .history-item:hover {
+        background-color: #2d3748;
+        transform: translateX(3px);
+        border-left-color: #3b82f6;
+    }
+    
+    /* Feature cards with hover effects */
+    .feature-card {
+        background-color: #1e293b;
+        border-radius: 10px;
+        padding: 12px 15px;
+        margin-bottom: 10px;
+        transition: all 0.3s ease;
+        border-left: 3px solid transparent;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        border-left: 3px solid #3b82f6;
+        background-color: #2d3748;
+    }
+    
+    /* Animated tech badges */
+    .tech-badge {
+        display: inline-block;
+        background-color: #1e293b;
+        color: #94a3b8;
+        padding: 6px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        margin: 0 5px 8px 0;
+        transition: all 0.2s ease;
+        border: 1px solid rgba(59, 130, 246, 0.2);
+    }
+    
+    .tech-badge:hover {
+        background-color: #3b82f6;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+    }
+    
+    /* Welcome banner styling */
+    .welcome-banner {
+        text-align: center;
+        margin: 25px auto 30px;
+        max-width: 800px;
+        animation: fadeInDown 0.8s ease-out;
+    }
+    
+    .welcome-banner h1 {
+        color: #f8fafc;
+        font-size: 30px;
+        font-weight: 700;
+        margin-bottom: 15px;
+        background: linear-gradient(135deg, #3b82f6, #60a5fa);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: -0.5px;
+    }
+    
+    .welcome-banner p {
+        color: #94a3b8;
+        font-size: 16px;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+    
+    /* Pattern examples section */
+    .patterns-section {
+        background-color: rgba(30, 41, 59, 0.6);
+        border-radius: 12px;
+        padding: 18px 22px;
+        margin: 0 auto 35px;
+        max-width: 800px;
+        border: 1px solid rgba(59, 130, 246, 0.2);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+    }
+    
+    .pattern-indicator {
+        display: inline-block;
+        background-color: rgba(59, 130, 246, 0.15);
+        color: #bfdbfe;
+        border-radius: 20px;
+        padding: 6px 12px;
+        font-size: 13px;
+        margin: 5px;
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        transition: all 0.2s ease;
+        cursor: pointer;
+    }
+    
+    .pattern-indicator:hover {
+        background-color: rgba(59, 130, 246, 0.3);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Welcome container with better animation */
+    .welcome-container {
+        text-align: center;
+        padding: 40px 20px;
+        color: #94a3b8;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 400px;
+        animation: fadeIn 1s ease-out;
+    }
+    
+    .welcome-container img {
+        animation: float 6s ease-in-out infinite;
+        margin-bottom: 25px;
+        filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3));
+    }
+    
+    /* Footer info styling */
+    .footer-info {
+        text-align: center;
+        color: #94a3b8;
+        font-size: 11px;
+        margin-top: 12px;
+        opacity: 0.8;
+        letter-spacing: 0.5px;
     }
     
     /* Hide Streamlit elements */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
-    .stDeployButton {display:none;}
-    header {display:none;}
-    
-    /* Scrollbar styling */
-    ::-webkit-scrollbar {
-        width: 6px;
-        height: 6px;
-    }
-    
-    ::-webkit-scrollbar-track {
-        background: #1e293b;
-    }
-    
-    ::-webkit-scrollbar-thumb {
-        background: #475569;
-        border-radius: 4px;
-    }
-    
-    ::-webkit-scrollbar-thumb:hover {
-        background: #64748b;
-    }
-    
-    /* Logo styling */
-    .logo-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-    
-    .logo-container img {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 3px solid #3b82f6;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-    
-    /* Tech badges */
-    .tech-badge {
-        display: inline-block;
-        background-color: #334155;
-        color: #94a3b8;
-        padding: 5px 10px;
-        border-radius: 20px;
-        font-size: 12px;
-        margin: 0 5px 5px 0;
-    }
-    
-    /* Connect links */
-    .connect-links {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        margin: 15px 0;
-    }
-    
-    .connect-link {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 36px;
-        height: 36px;
-        background-color: #334155;
-        border-radius: 50%;
-        transition: all 0.3s ease;
-    }
-    
-    .connect-link:hover {
-        transform: translateY(-3px);
-        background-color: #3b82f6;
-    }
+    header {visibility: hidden;}
     
     /* Mobile responsiveness */
     @media (max-width: 768px) {
@@ -571,111 +467,99 @@ def load_css():
         
         .user-message::before,
         .bot-message::before {
-            width: 30px;
-            height: 30px;
+            width: 25px;
+            height: 25px;
         }
         
-        .user-message {
-            margin-right: 10px;
+        .welcome-banner h1 {
+            font-size: 24px;
         }
         
-        .bot-message {
-            margin-left: 10px;
+        .welcome-banner p {
+            font-size: 14px;
         }
         
-        # .input-container {
-        #     padding: 5px 5px 5px 15px;
-        #     height: 50px;
-        # }
+        .pattern-indicator {
+            font-size: 12px;
+            padding: 5px 10px;
+        }
         
         .input-container .stTextInput > div > div > input {
             font-size: 14px !important;
         }
         
-        .stButton button {
-            width: 36px;
-            height: 36px;
-        }
-        
-        .welcome-container {
-            padding: 20px 10px;
-            height: calc(100vh - 150px);
-        }
-        
-        .welcome-container img {
-            width: 60px;
-        }
-        
-        .sidebar-content {
-            padding: 15px;
+        .messages-container {
+            padding: 10px 15px 130px 15px;
         }
         
         .logo-container img {
-            width: 60px;
-            height: 60px;
-        }
-        
-        .history-container {
-            max-height: 200px;
-        }
-        
-        .messages-container {
-            padding: 0px 10px 100px 10px;
+            width: 70px;
+            height: 70px;
         }
     }
     
-    /* Hide form label */
-    label[data-testid="stText"] {
-        display: none;
+    /* Animations */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
     }
     
-    /* Column spacing fixes */
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-15px); }
+        100% { transform: translateY(0px); }
+    }
+    
+    @keyframes pulse {
+        0% { transform: scale(1); opacity: 1; }
+        100% { transform: scale(1.5); opacity: 0; }
+    }
+    
+    @keyframes gradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: #1e293b;
+        border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: #475569;
+        border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        background: #3b82f6;
+    }
+    
+    /* Column adjustments for better layout */
     div[data-testid="column"] {
         padding: 0 !important;
     }
     
-    /* Reset stForm padding */
-    div[data-testid="stForm"] > div:first-child {
-        padding-bottom: 0 !important;
-        padding-top: 0 !important;
-    }
-    
-    /* Fix form button spacing */
-    div[data-testid="stForm"] button {
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-    }
-    
-    @keyframes ripple {
-        0% {
-            transform: scale(0, 0);
-            opacity: 0.5;
-        }
-        100% {
-            transform: scale(30, 30);
-            opacity: 0;
-        }
-    }
-
-    /* Column adjustments for the form layout */
-    div[data-testid="column"]:nth-child(1) {
-        padding-right: 0 !important;
-        max-width: calc(100% - 80px) !important;
-    }
-    
-    div[data-testid="column"]:nth-child(2), 
-    div[data-testid="column"]:nth-child(3) {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        max-width: 40px !important;
-    }
-    
-    /* Form styling adjustments */
-    form[data-testid="stForm"] {
-        background: transparent !important;
+    /* Fix form spacing */
+    div[data-testid="stForm"] {
         border: none !important;
         padding: 0 !important;
-        margin: 0 !important;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -937,7 +821,7 @@ def main():
         st.markdown('<div class="sidebar-content">', unsafe_allow_html=True)
         st.markdown("""
         <div class="logo-container">
-            <img src="https://nandeshkalashetti.netlify.app/img/person.jpg" alt="Nandesh Kalashetti">
+            <img src="Nandesh.png" alt="Nandesh Kalashetti">
             <h2 style="margin-top: 10px; color: #f8fafc; font-size: 18px;">Nandesh Kalashetti</h2>
             <p style="color: #94a3b8; font-size: 13px;">Full-Stack Developer</p>
         </div>
@@ -1029,20 +913,20 @@ def main():
     # Add pattern examples section
     st.markdown("""
     <div class="patterns-section">
-        <div style="color: #e2e8f0; font-size: 13px; margin-bottom: 8px;">Try these pattern examples:</div>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <span class="pattern-indicator">hello</span>
-            <span class="pattern-indicator">who are you</span>
-            <span class="pattern-indicator">tell me a joke</span>
-            <span class="pattern-indicator">what is AI</span>
-            <span class="pattern-indicator">explain LLM</span>
-            <span class="pattern-indicator">future of AI</span>
-            <span class="pattern-indicator">tell me a riddle</span>
-            <span class="pattern-indicator">tell me a fun fact</span>
-            <span class="pattern-indicator">best AI tools</span>
-            <span class="pattern-indicator">hindi</span>
-            <span class="pattern-indicator">marathi</span>
-            <span class="pattern-indicator">bye</span>
+        <div style="color: #e2e8f0; font-size: 14px; margin-bottom: 12px; font-weight: 500;">Try these patterns:</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;">
+            <span class="pattern-indicator" onclick="document.getElementById('user-input').value='hello'; document.getElementById('user-input').focus();">hello</span>
+            <span class="pattern-indicator" onclick="document.getElementById('user-input').value='who are you'; document.getElementById('user-input').focus();">who are you</span>
+            <span class="pattern-indicator" onclick="document.getElementById('user-input').value='tell me a joke'; document.getElementById('user-input').focus();">tell me a joke</span>
+            <span class="pattern-indicator" onclick="document.getElementById('user-input').value='what is AI'; document.getElementById('user-input').focus();">what is AI</span>
+            <span class="pattern-indicator" onclick="document.getElementById('user-input').value='explain LLM'; document.getElementById('user-input').focus();">explain LLM</span>
+            <span class="pattern-indicator" onclick="document.getElementById('user-input').value='future of AI'; document.getElementById('user-input').focus();">future of AI</span>
+            <span class="pattern-indicator" onclick="document.getElementById('user-input').value='tell me a riddle'; document.getElementById('user-input').focus();">tell me a riddle</span>
+            <span class="pattern-indicator" onclick="document.getElementById('user-input').value='tell me a fun fact'; document.getElementById('user-input').focus();">tell me a fun fact</span>
+            <span class="pattern-indicator" onclick="document.getElementById('user-input').value='best AI tools'; document.getElementById('user-input').focus();">best AI tools</span>
+            <span class="pattern-indicator" onclick="document.getElementById('user-input').value='tell me something in hindi'; document.getElementById('user-input').focus();">hindi</span>
+            <span class="pattern-indicator" onclick="document.getElementById('user-input').value='tell me something in marathi'; document.getElementById('user-input').focus();">marathi</span>
+            <span class="pattern-indicator" onclick="document.getElementById('user-input').value='bye'; document.getElementById('user-input').focus();">bye</span>
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -1104,11 +988,11 @@ def main():
             # Check if this was a rule-based match and add the pattern indicator
             pattern_indicator = ""
             if message.get("matched_pattern", None):
-                pattern_indicator = f'<div style="margin-top: 8px; font-size: 12px; color: #a5b4fc;"><span class="pattern-indicator">rule</span> Matched pattern: <code>{message["matched_pattern"]}</code></div>'
+                pattern_indicator = f'<div style="margin-top: 12px; font-size: 12px; color: #94a3b8;"><span class="pattern-indicator" style="display: inline-block; background-color: rgba(59, 130, 246, 0.15); color: #bfdbfe; border-radius: 20px; padding: 4px 12px; font-size: 12px; border: 1px solid rgba(59, 130, 246, 0.3); margin-right: 5px;">rule</span> Matched pattern: <code style="background: rgba(30, 41, 59, 0.6); padding: 2px 6px; border-radius: 4px; font-size: 11px;">{message["matched_pattern"]}</code></div>'
             
             # Add AI indicator for non-rule responses
             elif "is_pattern_match" in message and not message["is_pattern_match"]:
-                pattern_indicator = '<div style="margin-top: 8px; font-size: 12px; color: #a5b4fc;"><span class="pattern-indicator">ai</span> No rule pattern matched - using AI response</div>'
+                pattern_indicator = '<div style="margin-top: 12px; font-size: 12px; color: #94a3b8;"><span class="pattern-indicator" style="display: inline-block; background-color: rgba(236, 72, 153, 0.15); color: #fbcfe8; border-radius: 20px; padding: 4px 12px; font-size: 12px; border: 1px solid rgba(236, 72, 153, 0.3); margin-right: 5px;">ai</span> No rule pattern matched - using AI response</div>'
                 
             st.markdown(f'<div class="message bot-message">{content}{pattern_indicator}</div>', unsafe_allow_html=True)
     
@@ -1118,11 +1002,7 @@ def main():
     st.markdown('<div class="input-area">', unsafe_allow_html=True)
 
     with st.form(key="message_form", clear_on_submit=True):
-        col1, col2, col3 = st.columns([20, 1, 1])
-        
-        with col3:
-            # Send button
-            submitted = st.form_submit_button("Submit", type="primary", help="Send message")
+        col1, col2 = st.columns([6, 1])
         
         with col1:
             st.markdown('<div class="input-container">', unsafe_allow_html=True)
@@ -1130,20 +1010,14 @@ def main():
             user_input = st.text_input(
                 "Message",
                 key="user_input",
-                placeholder="Type your questions or greeting here...",
+                placeholder="Type your message here...",
                 label_visibility="collapsed"
             )
             st.markdown('</div>', unsafe_allow_html=True)
             
-        #with col2:
-            # # Tool buttons container
-            # st.markdown("""
-            # <div class="tools-container">
-            #     <button class="tool-button" title="Upload image">
-            #         <img src="https://img.icons8.com/material-outlined/24/ffffff/camera--v1.png" alt="camera"/>
-            #     </button>
-            # </div>
-            # """, unsafe_allow_html=True)
+        with col2:
+            # Send button with text
+            submitted = st.form_submit_button("Submit", type="primary", help="Send message")
         
         # Footer info
         st.markdown("""
