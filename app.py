@@ -1051,7 +1051,7 @@ def main():
         col1, col2 = st.columns([20, 1])
         
         with col1:
-            st.markdown(unsafe_allow_html=True)
+            st.markdown('<div class="input-container">',unsafe_allow_html=True)
             # Text input with clearer hint
             user_input = st.text_input(
                 "Message",
