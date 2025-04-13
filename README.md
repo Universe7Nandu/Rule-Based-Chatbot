@@ -1,153 +1,163 @@
-# 🤖 AI Assistant with Rule-Based Intelligence
+# 🤖 NexusChat: Advanced Rule-Based AI Assistant
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/Universe7Nandu/Rule-Based-Chatbot/main/.github/banner.png" alt="AI Assistant Banner" width="800px" style="border-radius: 10px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);">
-
-  <p align="center">
-    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
-    <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white" alt="Streamlit">
-    <img src="https://img.shields.io/badge/Groq%20API-0D96F6?style=for-the-badge&logo=openai&logoColor=white" alt="Groq API">
-    <img src="https://img.shields.io/badge/LLaMA%203-5436DA?style=for-the-badge&logo=meta&logoColor=white" alt="LLaMA 3">
-    <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3">
-  </p>
-  
-  <p align="center">
-    <a href="https://universe7nandu-rule-based-chatbot-app-jgrqn3.streamlit.app/">View Demo</a>
-    ·
-    <a href="https://github.com/Universe7Nandu/Rule-Based-Chatbot/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/Universe7Nandu/Rule-Based-Chatbot/issues">Request Feature</a>
-  </p>
+  <img src="https://img.shields.io/badge/Python-3.9+-blue.svg" alt="Python Version"/>
+  <img src="https://img.shields.io/badge/Streamlit-1.32.0-FF4B4B.svg" alt="Streamlit Version"/>
+  <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"/>
+  <img src="https://img.shields.io/badge/Code%20Quality-A+-success" alt="Code Quality"/>
+  <br>
+  <a href="https://github.com/Universe7Nandu"><img src="https://img.shields.io/github/followers/Universe7Nandu?style=social" alt="GitHub Follow"/></a>
+  <a href="https://www.linkedin.com/in/nandesh-kalashetti-333a78250/"><img src="https://img.shields.io/badge/LinkedIn-Connect-blue" alt="LinkedIn"/></a>
 </div>
+
+<p align="center">
+  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWNzZDdwaDA2ZGR2YWpmbzZnNGZ2cmlyM21ydnRsY2hmYnY3MjBncSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RDZo7znAdn2u7sAcWH/giphy.gif" alt="AI Assistant Demo" width="600"/>
+</p>
 
 ## ✨ Overview
 
-AI Assistant is a sophisticated chatbot that combines rule-based pattern matching with advanced AI capabilities to deliver a responsive and intelligent conversational experience. Built with performance and user experience in mind, it features a beautiful modern UI that works seamlessly across desktop and mobile devices.
+NexusChat is a sophisticated rule-based AI chatbot that combines pattern matching and AI for intelligent conversations. The system intelligently processes user inputs, matching them against pre-defined patterns for rapid responses. For complex queries outside its rule base, it seamlessly falls back to an advanced AI model, ensuring comprehensive and accurate answers every time.
 
-### 📱 Live Demo
+With a sleek, modern UI featuring glass-morphism effects, animated transitions, and thoughtful user experience touches, this application demonstrates the perfect blend of rule-based efficiency and AI flexibility.
 
-Experience the AI Assistant in action: [Live Demo](https://universe7nandu-rule-based-chatbot-app-jgrqn3.streamlit.app/)
+## 🚀 Key Features
+
+- **💎 Pattern Matching**: Identifies user intents through regex patterns for instant responses
+- **🧠 AI Integration**: Falls back to Groq's LLaMA 3 for complex queries beyond defined patterns
+- **🌈 Modern UI**: Beautiful glass-morphism interface with smooth animations and transitions
+- **📱 Responsive Design**: Works flawlessly across devices of all sizes
+- **🔍 Advanced RegEx**: Sophisticated pattern recognition for accurate intent capture
+- **🧪 Unit Testing**: Ensures reliability through comprehensive testing
+- **📋 Chat History**: Maintains context across sessions for continuous conversations
+- **🔄 Stateful Interaction**: Preserves application state for consistent user experiences
+
+## 🖥️ Technology Stack
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/Universe7Nandu/Rule-Based-Chatbot/main/.github/demo.gif" alt="AI Assistant Demo" width="700px" style="border-radius: 8px; margin: 20px 0; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
+  <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white" alt="Streamlit"/>
+  <img src="https://img.shields.io/badge/RegEx-3DDC84?style=for-the-badge&logo=regex&logoColor=white" alt="RegEx"/>
+  <img src="https://img.shields.io/badge/Groq-000000?style=for-the-badge&logo=groq&logoColor=white" alt="Groq"/>
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3"/>
+  <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git"/>
+  <img src="https://img.shields.io/badge/PyTest-0A9EDC?style=for-the-badge&logo=pytest&logoColor=white" alt="PyTest"/>
 </div>
 
-## 🎯 Key Features
+## 📋 Installation & Setup
 
-- **Rule-Based Intelligence**: Pattern matching using regex provides instant responses to common queries
-- **AI Capabilities**: Powered by Groq API with LLaMA 3 model for handling complex questions
-- **Responsive Design**: Optimized UI that works beautifully on desktops, tablets, and mobile devices
-- **Chat History**: Remembers your recent conversations for easy reference
-- **Modern UI**: Sleek design with glassmorphism effects, animations, and intuitive interaction
-- **Fast Response Time**: Optimized for performance with minimal latency
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Universe7Nandu/NexusChat.git
+   cd NexusChat
+   ```
 
-## 🧠 Why This Matters
+2. **Create a virtual environment and activate it**
+   ```bash
+   python -m venv venv
+   # On Windows
+   venv\Scripts\activate
+   # On macOS/Linux
+   source venv/bin/activate
+   ```
 
-In today's fast-paced digital world, immediate access to information is crucial. This AI Assistant represents an important step in creating accessible AI tools that:
+3. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-1. **Reduce Response Time**: By combining pre-defined rules with AI, users get instant answers to common questions
-2. **Lower Computational Costs**: Rule-based systems handle simple queries efficiently without needing to call costly API endpoints
-3. **Increase Accessibility**: The responsive design ensures that AI assistance is available on any device
-4. **Improve User Experience**: Beautiful UI and natural conversation flow make interacting with AI more engaging
+4. **Create a .env file with your API key**
+   ```
+   GROQ_API_KEY=your_groq_api_key_here
+   ```
 
-## 🛠️ Tech Stack
+5. **Run the application**
+   ```bash
+   streamlit run app.py
+   ```
 
-- **Frontend**: Streamlit, CSS3, HTML5
-- **Backend**: Python
-- **AI**: Groq API, LLaMA 3 model
-- **Pattern Matching**: Regular Expressions (Regex)
-- **Hosting**: Streamlit Cloud
+## 🎬 Demo
 
-## 📦 Installation
+Check out the full demonstration on YouTube:
 
-1. Clone the repository:
-```bash
-git clone https://github.com/Universe7Nandu/Rule-Based-Chatbot.git
-cd Rule-Based-Chatbot
-```
-
-2. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-3. Create a `.env` file with your Groq API key:
-```
-GROQ_API_KEY=your_groq_api_key_here
-```
-
-4. Run the application:
-```bash
-streamlit run app.py
-```
-
-## 🚀 Usage
-
-The AI Assistant can:
-
-- Answer common questions instantly using pattern matching
-- Provide detailed responses to complex queries using AI
-- Remember your conversation history
-- Adapt to different devices with responsive design
-
-To customize the rule patterns, modify the `rules` list in the `init_session_state()` function in `app.py`.
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=your_video_id">
+    <img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="YouTube Demo"/>
+  </a>
+</div>
 
 ## 🔍 How It Works
 
-The chatbot uses a hybrid approach to handle different types of queries:
+1. **Pattern Matching**: The system first tries to match user input with predefined patterns using regular expressions
+2. **Rule-Based Responses**: If a pattern match is found, it returns a predefined response
+3. **AI Fallback**: For queries without pattern matches, it uses the Groq API with LLaMA 3 model
+4. **Session Management**: Maintains conversation context for a coherent experience
+5. **UI Rendering**: Displays conversations in a modern, responsive interface with different styling for user and AI messages
 
-1. **Rule-Based Processing**:
-   - User input is matched against predefined regex patterns
-   - If a match is found, a pre-written response is returned instantly
+## 🌟 Supported Topics
 
-2. **AI Processing**:
-   - If no rule matches, the query is sent to the Groq API
-   - The LLaMA 3 model generates a contextually appropriate response
-   - The response is displayed to the user
+The chatbot can understand and respond to diverse topics including:
 
-3. **Chat History Management**:
-   - Recent queries are stored in the session state
-   - Users can revisit previous conversations easily
+- **🤖 AI & Technology Concepts**: Explanations of AI, ML, NLP, LLMs, and more
+- **💻 Programming & Development**: Information about coding, languages, and tech stacks
+- **🎯 Personal Interactions**: Greetings, farewells, and casual conversation
+- **🧩 Fun Elements**: Jokes, riddles, fun facts, and brain teasers
+- **🗣️ Multilingual Support**: Responses in Hindi and Marathi
+- **❓ General Knowledge**: Answers to various general queries
 
-## 🤝 Connect with the Developer
+## 🛠️ Project Structure
+
+```
+NexusChat/
+├── app.py            # Main application file
+├── requirements.txt  # Project dependencies
+├── .env              # Environment variables (API keys)
+├── Nandesh.png       # Profile image
+├── README.md         # Project documentation
+└── tests/            # Unit tests for the application
+```
+
+## 📊 Future Enhancements
+
+- [ ] Voice interaction capabilities
+- [ ] Multi-language support expansion
+- [ ] Enhanced pattern matching with ML techniques
+- [ ] Integration with external APIs for real-time data
+- [ ] User authentication and personalized responses
+- [ ] Analytics dashboard for conversation metrics
+
+## 🔗 Connect With Me
 
 <div align="center">
-  <a href="https://nandeshkalashetti.netlify.app/">
-    <img src="https://img.shields.io/badge/Portfolio-3D3D3D?style=for-the-badge&logo=firefox&logoColor=white" alt="Portfolio">
-  </a>
   <a href="https://github.com/Universe7Nandu">
-    <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
+    <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"/>
   </a>
   <a href="https://www.linkedin.com/in/nandesh-kalashetti-333a78250/">
-    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/>
   </a>
   <a href="https://twitter.com/UniverseMath25">
-    <img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white" alt="Twitter">
+    <img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white" alt="Twitter"/>
   </a>
   <a href="https://www.instagram.com/nandesh_kalshetti/">
-    <img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram">
+    <img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram"/>
   </a>
 </div>
 
-## 📝 Future Enhancements
-
-- Multi-language support
-- Voice input and output
-- Integration with external APIs for real-time data
-- User authentication for personalized experiences
-- Expanded rule set for more efficient responses
-
 ## 📜 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🙏 Acknowledgements
+
+- [Streamlit](https://streamlit.io/) for the amazing web framework
+- [Groq](https://groq.com) for the powerful API services
+- [Icons8](https://icons8.com/) for beautiful icons used in the interface
+- [Shields.io](https://shields.io/) for the README badges
+- [Animate.css](https://animate.style/) for smooth animations
 
 ---
 
 <div align="center">
-  <p>
-    <b>Designed and Developed with ❤️ by <a href="https://nandeshkalashetti.netlify.app/">Nandesh Kalashetti</a></b>
-  </p>
-  <p>
-    <i>If you found this project helpful or interesting, please consider giving it a ⭐!</i>
-  </p>
+  <b>© 2024 Nandesh Kalashetti. All rights reserved.</b>
+  <br>
+  <i>Made with ❤️ in Python</i>
 </div> 
