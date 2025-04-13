@@ -132,19 +132,19 @@ def load_css():
     }
     
     /* Input area - sleeker with frosted glass effect */
-    # .input-area {
-    #     position:absolute;
-    #     bottom: 0;
-    #     left: 0;
-    #     right: 0;
-    #     padding: 10px 20px 15px 20px;
-    #     background: rgba(14, 17, 23, 0.95);
-    #     z-index: 100;
-    #     border-top: 1px solid rgba(46, 52, 64, 0.3);
-    #     backdrop-filter: blur(10px);
-    #     box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.25);
-    #     transition: all 0.3s ease;
-    # }
+    .input-area {
+        position:absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 10px 20px 15px 20px;
+        background: rgba(14, 17, 23, 0.95);
+        z-index: 100;
+        border-top: 1px solid rgba(46, 52, 64, 0.3);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.25);
+        transition: all 0.3s ease;
+    }
     
     # /* Input container with new design matching math chatbot */
     # .input-container {
