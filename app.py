@@ -583,10 +583,10 @@ def load_css():
             margin-left: 10px;
         }
         
-        .input-container {
-            padding: 5px 5px 5px 15px;
-            height: 50px;
-        }
+        # .input-container {
+        #     padding: 5px 5px 5px 15px;
+        #     height: 50px;
+        # }
         
         .input-container .stTextInput > div > div > input {
             font-size: 14px !important;
