@@ -137,35 +137,38 @@ def load_css():
         bottom: 0;
         left: 0;
         right: 0;
-        padding: 15px 15px 10px 15px;
-        background: rgba(14, 21, 37, 0.8);
+        padding: 10px 20px 15px 20px;
+        background: rgba(14, 17, 23, 0.95);
         z-index: 100;
-        border-top: 1px solid rgba(79, 70, 229, 0.2);
+        border-top: 1px solid rgba(46, 52, 64, 0.3);
         backdrop-filter: blur(10px);
-        box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.25);
+        transition: all 0.3s ease;
     }
     
-    /* Input container with pulsing border effect */
-    # .input-container {
-    #     display: flex;
-    #     align-items: center;
-    #     background-color: rgba(30, 41, 59, 0.8);
-    #     border-radius: 25px;
-    #     padding: 8px 8px 8px 20px;
-    #     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    #     margin: 0 auto;
-    #     width: 100%;
-    #     max-width: 800px;
-    #     transition: all 0.3s ease;
-    #     border: 1px solid rgba(79, 70, 229, 0.3);
-    #     position: relative;
-    #     overflow: hidden;
-    # }
+    /* Input container with new design matching math chatbot */
+    .input-container {
+        display: flex;
+        align-items: center;
+        background-color: rgba(20, 22, 30, 0.7);
+        border-radius: 50px;
+        padding: 8px 15px 8px 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        margin: 0 auto;
+        width: 100%;
+        max-width: 1200px;
+        height: 54px;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(45, 55, 72, 0.5);
+        position: relative;
+        overflow: hidden;
+    }
     
     .input-container:focus-within {
-        box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4);
-        border: 1px solid rgba(79, 70, 229, 0.6);
-        transform: translateY(-3px);
+        box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+        border: 1px solid rgba(99, 102, 241, 0.4);
+        transform: translateY(-2px);
+        background-color: rgba(22, 25, 37, 0.8);
     }
     
     .input-container:focus-within::before {
@@ -175,14 +178,14 @@ def load_css():
         left: -2px;
         right: -2px;
         bottom: -2px;
-        border-radius: 26px;
-        background: linear-gradient(135deg, #4f46e5, #8b5cf6, #4f46e5);
-        background-size: 400% 400%;
+        border-radius: 50px;
+        background: linear-gradient(90deg, #4f46e5, #8b5cf6, #4f46e5);
+        background-size: 200% 200%;
         z-index: -1;
         animation: gradient 3s ease infinite;
-        opacity: 0.6;
+        opacity: 0.4;
     }
-    
+
     /* Fix for Streamlit inputs - restoring required styles */
     .input-container .stTextInput {
         flex-grow: 1;
@@ -190,56 +193,42 @@ def load_css():
     
     .input-container .stTextInput > div {
         background-color: transparent !important;
+        border: none !important;
     }
     
     .input-container .stTextInput > div > div > input {
         background-color: transparent !important;
         color: #f8fafc !important;
         border: none !important;
-        padding: 12px 0 !important;
-        font-size: 16px !important;
+        padding: 6px 15px !important;
+        font-size: 15px !important;
         width: 100% !important;
         margin: 0 !important;
-        height: 40px !important;
+        height: 38px !important;
+        font-family: 'Inter', sans-serif !important;
     }
     
-    /* Hide form label */
-    label[data-testid="stText"] {
-        display: none;
+    .input-container .stTextInput > div > div > input::placeholder {
+        color: rgba(156, 163, 175, 0.7) !important;
+        font-style: normal !important;
     }
-    
-    /* Column spacing fixes */
-    div[data-testid="column"] {
-        padding: 0 !important;
-    }
-    
-    /* Reset stForm padding */
-    div[data-testid="stForm"] > div:first-child {
-        padding-bottom: 0 !important;
-        padding-top: 0 !important;
-    }
-    
-    /* Fix form button spacing */
-    div[data-testid="stForm"] button {
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-    }
-    
+
     /* Send button with nicer hover effect */
     button[kind="primary"] {
-        background: linear-gradient(135deg, #4f46e5, #3730a3) !important;
+        background: linear-gradient(135deg, #4f46e5, #6366f1) !important;
         color: white !important;
         border: none !important;
         border-radius: 50% !important;
-        width: 42px !important;
-        height: 42px !important;
-        padding: 10px !important;
+        width: 38px !important;
+        height: 38px !important;
+        padding: 0 !important;
+        margin: 0 8px 0 0 !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
         cursor: pointer !important;
-        transition: all 0.3s ease !important;
-        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4) !important;
+        transition: all 0.2s ease !important;
+        box-shadow: 0 2px 10px rgba(79, 70, 229, 0.3) !important;
         min-width: unset !important;
         position: relative;
         overflow: hidden;
@@ -247,7 +236,8 @@ def load_css():
     
     button[kind="primary"]:hover {
         transform: scale(1.08) !important;
-        box-shadow: 0 6px 18px rgba(79, 70, 229, 0.5) !important;
+        background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+        box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4) !important;
     }
     
     button[kind="primary"]::after {
@@ -273,21 +263,56 @@ def load_css():
     }
     
     .stButton button::before {
-        content: "↑";
-        font-size: 18px;
-        font-weight: bold;
+        content: "›";
+        font-size: 24px;
+        font-weight: 500;
         color: white;
+        transform: rotate(-90deg);
+        display: inline-block;
+        line-height: 0;
+        margin-top: -2px;
     }
     
-    @keyframes ripple {
-        0% {
-            transform: scale(0, 0);
-            opacity: 0.5;
-        }
-        100% {
-            transform: scale(30, 30);
-            opacity: 0;
-        }
+    /* Tools container for buttons next to input */
+    .tools-container {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin-right: 5px;
+    }
+    
+    .tool-button {
+        background-color: rgba(55, 65, 81, 0.5);
+        border: none;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    
+    .tool-button:hover {
+        background-color: rgba(79, 70, 229, 0.3);
+        transform: translateY(-2px);
+    }
+    
+    .tool-button img {
+        width: 16px;
+        height: 16px;
+        opacity: 0.9;
+    }
+    
+    /* Footer info styling */
+    .footer-info {
+        text-align: center;
+        color: #6b7280;
+        font-size: 11px;
+        margin-top: 8px;
+        opacity: 0.7;
+        letter-spacing: 0.3px;
     }
     
     /* Pattern indicator for rule-based responses */
@@ -536,16 +561,6 @@ def load_css():
         background-color: #3b82f6;
     }
     
-    /* Footer info in chat input - fully integrated */
-    .footer-info {
-        text-align: center;
-        color: #64748b;
-        font-size: 11px;
-        margin-top: 10px;
-        padding-bottom: 5px;
-        opacity: 0.7;
-    }
-    
     /* Mobile responsiveness */
     @media (max-width: 768px) {
         .message {
@@ -607,6 +622,60 @@ def load_css():
         .messages-container {
             padding: 0px 10px 100px 10px;
         }
+    }
+    
+    /* Hide form label */
+    label[data-testid="stText"] {
+        display: none;
+    }
+    
+    /* Column spacing fixes */
+    div[data-testid="column"] {
+        padding: 0 !important;
+    }
+    
+    /* Reset stForm padding */
+    div[data-testid="stForm"] > div:first-child {
+        padding-bottom: 0 !important;
+        padding-top: 0 !important;
+    }
+    
+    /* Fix form button spacing */
+    div[data-testid="stForm"] button {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
+    
+    @keyframes ripple {
+        0% {
+            transform: scale(0, 0);
+            opacity: 0.5;
+        }
+        100% {
+            transform: scale(30, 30);
+            opacity: 0;
+        }
+    }
+
+    /* Column adjustments for the form layout */
+    div[data-testid="column"]:nth-child(1) {
+        padding-right: 0 !important;
+        max-width: calc(100% - 80px) !important;
+    }
+    
+    div[data-testid="column"]:nth-child(2), 
+    div[data-testid="column"]:nth-child(3) {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        max-width: 40px !important;
+    }
+    
+    /* Form styling adjustments */
+    form[data-testid="stForm"] {
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -1046,9 +1115,14 @@ def main():
     st.markdown('</div>', unsafe_allow_html=True)
     
     # Input area with form with better column proportions
+    st.markdown('<div class="input-area">', unsafe_allow_html=True)
 
     with st.form(key="message_form", clear_on_submit=True):
-        col1, col2 = st.columns([20, 1])
+        col1, col2, col3 = st.columns([20, 1, 1])
+        
+        with col3:
+            # Send button
+            submitted = st.form_submit_button("", type="primary", help="Send message")
         
         with col1:
             st.markdown('<div class="input-container">', unsafe_allow_html=True)
@@ -1056,14 +1130,31 @@ def main():
             user_input = st.text_input(
                 "Message",
                 key="user_input",
-                placeholder="Type your message here...",
+                placeholder="Type your math question or greeting here...",
                 label_visibility="collapsed"
             )
             st.markdown('</div>', unsafe_allow_html=True)
-        
+            
         with col2:
-            # Send button with upward arrow
-            submitted = st.form_submit_button("", type="primary", help="Send message")
+            # Tool buttons container
+            st.markdown("""
+            <div class="tools-container">
+                <button class="tool-button" title="Upload image">
+                    <img src="https://img.icons8.com/material-outlined/24/ffffff/camera--v1.png" alt="camera"/>
+                </button>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        # Footer info
+        st.markdown("""
+        <div class="footer-info">
+            © 2024 Nandesh Kalashetti | Rule-Based Chat Assistant | 
+            <span style="color: #a7f3d0;">✓</span> Functionality 
+            <span style="color: #a7f3d0;">✓</span> Version Control 
+            <span style="color: #a7f3d0;">✓</span> Testing 
+            <span style="color: #a7f3d0;">✓</span> Code Quality
+        </div>
+        """, unsafe_allow_html=True)
         
     st.markdown('</div>', unsafe_allow_html=True)  # Close input-area div
 
