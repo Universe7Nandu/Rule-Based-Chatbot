@@ -80,7 +80,7 @@ With a sleek, modern UI featuring glass-morphism effects, animated transitions, 
 Check out the full demonstration on YouTube:
 
 <div align="center">
-  <a href="https://www.youtube.com/watch?v=your_video_id">
+  <a href="https://www.youtube.com/watch?v=1t9e25TGzB4">
     <img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="YouTube Demo"/>
   </a>
 </div>
@@ -142,9 +142,6 @@ NexusChat/
   </a>
 </div>
 
-## 📜 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## 🙏 Acknowledgements
 
