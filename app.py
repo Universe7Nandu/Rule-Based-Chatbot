@@ -1122,7 +1122,7 @@ def main():
         
         with col3:
             # Send button
-            submitted = st.form_submit_button("", type="primary", help="Send message",placeholder="Submit")
+            submitted = st.form_submit_button("", type="primary", help="Send message")
         
         with col1:
             st.markdown('<div class="input-container">', unsafe_allow_html=True)
