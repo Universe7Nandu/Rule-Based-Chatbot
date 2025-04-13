@@ -49,6 +49,9 @@ def load_css():
         min-height: 100vh;
         padding: 0;
         position: relative;
+        width: 100%;
+        margin: 0 auto;
+        overflow: hidden;
     }
     
     /* Messages container with smooth scroll */
@@ -367,7 +370,7 @@ def load_css():
     /* Welcome banner styling */
     .welcome-banner {
         text-align: center;
-        margin: 25px auto 30px;
+        margin: 10px auto 25px;
         max-width: 800px;
         animation: fadeInDown 0.8s ease-out;
     }
@@ -426,13 +429,13 @@ def load_css():
     /* Welcome container with better animation */
     .welcome-container {
         text-align: center;
-        padding: 40px 20px;
+        padding: 20px 20px;
         color: #94a3b8;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        min-height: 400px;
+        min-height: 250px;
         animation: fadeIn 1s ease-out;
     }
     
@@ -560,6 +563,45 @@ def load_css():
     div[data-testid="stForm"] {
         border: none !important;
         padding: 0 !important;
+    }
+    
+    /* Block container modifications */
+    .block-container {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        margin: 0 !important;
+    }
+    
+    [data-testid="stAppViewContainer"] > div:first-child {
+        padding-top: 0 !important;
+    }
+    
+    /* General streamlit container fixes */
+    .css-18e3th9 {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    
+    .css-1d391kg {
+        padding-top: 0 !important;
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+    }
+    
+    /* Element spacing fix */
+    .element-container {
+        margin-top: 0 !important;
+    }
+    
+    /* Main app container adjustment */
+    section[data-testid="stSidebar"] + div {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    
+    /* Row element adjustment */
+    div[data-testid="stVerticalBlock"] {
+        gap: 0 !important;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -908,10 +950,7 @@ def main():
         <h1>Rule-Based AI Assistant</h1>
         <p>Pattern matching chatbot with predefined responses and AI capabilities for complex queries</p>
     </div>
-    """, unsafe_allow_html=True)
-
-    # Add pattern examples section
-    st.markdown("""
+    
     <div class="patterns-section">
         <div style="color: #e2e8f0; font-size: 14px; margin-bottom: 12px; font-weight: 500;">Try these patterns:</div>
         <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;">
