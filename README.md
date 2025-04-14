@@ -3,7 +3,6 @@
 <div align="center">
   <img src="https://img.shields.io/badge/Python-3.9+-blue.svg" alt="Python Version"/>
   <img src="https://img.shields.io/badge/Streamlit-1.32.0-FF4B4B.svg" alt="Streamlit Version"/>
-  <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"/>
   <img src="https://img.shields.io/badge/Code%20Quality-A+-success" alt="Code Quality"/>
   <br>
   <a href="https://github.com/Universe7Nandu"><img src="https://img.shields.io/github/followers/Universe7Nandu?style=social" alt="GitHub Follow"/></a>
