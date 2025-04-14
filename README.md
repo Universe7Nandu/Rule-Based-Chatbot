@@ -153,7 +153,7 @@ NexusChat/
 ---
 
 <div align="center">
-  <b>© 2024 Nandesh Kalashetti. All rights reserved.</b>
+  <b>© 2025 Nandesh Kalashetti. All rights reserved.</b>
   <br>
   <i>Made with ❤️ in Python</i>
 </div> 
